@@ -3,7 +3,7 @@ PYTHON_PARSER="$HOME/.config/niri/scripts/cheatsheet_parser.py"
 
 RAW_LIST=$(python3 "$PYTHON_PARSER")
 
-SELECTED=$(echo "$RAW_LIST" | awk -F ' │ ' '{printf "%-30s │ %s\n", $1, $2}' | tofi --width 50% --height 50%)
+SELECTED=$(echo "$RAW_LIST" | awk -F ' │ ' '{printf "%-30s │ %s\n", $1, $2}' | tofi --width 40% --height 50%)
 
 if [ -n "$SELECTED" ]; then
     KEY_ONLY=$(echo "$SELECTED" | awk -F ' │ ' '{print $1}' | xargs)
