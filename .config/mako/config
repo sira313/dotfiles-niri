@@ -29,8 +29,9 @@ border-color=#f38ba8
 
 [app-name=OSD]
 anchor=bottom-center
-outer-margin=0,0,100
+outer-margin=0,0,20
 layer=overlay
 format=<span size='13pt' weight='bold'>%s</span>
 text-alignment=center
 invisible=0
+width=300
