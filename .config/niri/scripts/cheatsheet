@@ -1,8 +1,11 @@
 #!/bin/bash
 PYTHON_PARSER="$HOME/.config/niri/scripts/cheatsheet_parser.py"
 
-python3 "$PYTHON_PARSER" | \
-    tofi --prompt-text " Run: " \
-         --width 40% \
-         --height 50% \
-         --result-spacing 10
+RAW_LIST=$(python3 "$PYTHON_PARSER")
+
+SELECTED=$(echo "$RAW_LIST" | awk -F ' │ ' '{print $1 " │ " $2}' | tofi --width 50% --height 50%)
+
+if [ -n "$SELECTED" ]; then
+    COMMAND=$(echo "$RAW_LIST" | grep "^$SELECTED" | awk -F ' │ ' '{print $3}' | head -n 1)
+    sh -c "$COMMAND"
+fi
