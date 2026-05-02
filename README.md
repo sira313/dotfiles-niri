@@ -56,6 +56,35 @@ Ugh oh, dot forget starship
 ```
 curl -sS https://starship.rs/install.sh | sh
 ```
+#### Btrfs + Snapper
+```
+paru -S snapper
+```
+I used to make it manual only root
+```
+sudo snapper -c root create-config /
+```
+Edit `/etc/snapper/configs/root`
+
+Make it just like this
+```
+TIMELINE_CREATE="no"
+TIMELINE_CLEANUP="no"
+```
+And then
+```
+sudo systemctl stop snapper-timeline.timer
+sudo systemctl disable snapper-timeline.timer
+sudo systemctl stop snapper-cleanup.timer
+sudo systemctl disable snapper-cleanup.timer
+```
+You can use command:
+
+`snap` To make a snapshot
+
+`snap-list` View the snapshot list
+
+`snap-del` Delete the snapshot
 
 ## Tips 
 ###
