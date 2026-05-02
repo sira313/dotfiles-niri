@@ -108,3 +108,14 @@ Wait installation finish, debloat it!!!
 
 #### Shortcut
 Press `meta` + `space` search `Start Win` to start windows and freerdp. Use `Stop Win` to stop the service.
+
+### Important shortcut
+`Meta + T` Kitty
+
+`Meta + E` Nautilus
+
+`Meta + Space` App launcher
+
+`Meta + Shift + /` Shortcut list
+
+`Meta + x` Power menu
