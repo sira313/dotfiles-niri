@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Start Windows 11
+Comment=Menjalankan Windows 11 via Podman dan RDP
+# Menjalankan script fish di dalam kitty agar kamu bisa melihat output log-nya
+Exec=kitty --hold -e fish -c "start-win"
+Icon=windows
+Terminal=false
+Categories=Utility;
