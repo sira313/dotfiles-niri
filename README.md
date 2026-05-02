@@ -190,3 +190,5 @@ To manage the Windows VM, press `Meta + Space` and search:
 | `Meta + Space` | Open app launcher |
 | `Meta + Shift + /` | View shortcut list |
 | `Meta + X` | Open power menu |
+| `Meta + Alt + R` | Record full screen |
+| `Meta + Alt + S` | Stop screen recorder |
