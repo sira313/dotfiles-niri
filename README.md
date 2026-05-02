@@ -1,3 +1,4 @@
+![ss](https://raw.githubusercontent.com/sira313/dotfiles-niri/refs/heads/main/Screenshots/ss.png)
 # Arch + Niri + Waybar
 After install minimal Arch Linux with archinstall
 
