@@ -1,7 +1,6 @@
 # Arch + Niri + Waybar
-
 ![screenshot](https://raw.githubusercontent.com/sira313/dotfiles-niri/refs/heads/main/Screenshots/ss.png)
-
+After install arch minimal with archinstall. Using systemd-boot + UKI, btrfs, tuned, and ufw
 ## Table of Contents
 - [Setup Home Directory](#setup-home-directory)
 - [Install Paru](#install-paru)
