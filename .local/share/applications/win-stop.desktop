@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Stop Windows 11
+Comment=Mematikan container Windows 11
+Exec=kitty -e fish -c "cd ~/Documents/windows11/ && podman-compose down"
+Icon=system-shutdown
+Terminal=false
+Categories=Utility;
