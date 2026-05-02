@@ -1,0 +1,200 @@
+/* ╔══════════════════════════════════════════════════════════╗
+   ║                  Waybar · style.css                      ║
+   ╚══════════════════════════════════════════════════════════╝
+
+   Layout:
+     Left   — search | cpu | memory
+     Center — workspaces
+     Right  — power-profile | volume | bluetooth | network | battery | clock
+*/
+
+/* ── Palette ─────────────────────────────────────────────── */
+@define-color bg          #0f0f0f;
+@define-color bg-alt      #181818;
+@define-color border      #2a2a2a;
+
+@define-color fg-shine    #e3e3e3;
+@define-color fg          #d4d4d4;
+@define-color fg-dim      #949494;
+
+@define-color accent      #89b4fa;
+@define-color green       #a6e3a1;
+@define-color yellow      #f9e2af;
+@define-color red         #f38ba8;
+
+/* ── Reset ───────────────────────────────────────────────── */
+* {
+  border:        none;
+  border-radius: 0;
+  font-family:   "FiraCode Nerd Font", "JetBrainsMono Nerd Font", monospace;
+  font-size:     13px;
+  font-weight:   400;
+  min-height:    0;
+  padding:       0;
+  margin:        0;
+}
+
+/* ── Bar ─────────────────────────────────────────────────── */
+window#waybar {
+  background:    alpha(@bg, 0.99);
+  border:        none;
+  border-radius: 8px;
+  color:         @fg;
+}
+
+/* ── Section margins ─────────────────────────────────────── */
+.modules-left,
+.modules-right {
+  margin: 4px 0;
+}
+
+/* ── Smooth hover transition (all modules) ───────────────── */
+.modules-left   > widget > *,
+.modules-center > widget > *,
+.modules-right  > widget > * {
+  transition: color 150ms ease, background 150ms ease;
+}
+
+
+/* ╔══════════════════════════════════════════════════════════╗
+   ║  LEFT — Search · CPU · Memory                            ║
+   ╚══════════════════════════════════════════════════════════╝ */
+
+/* Shared defaults for left modules */
+#custom-search,
+#cpu,
+#memory {
+  color:   @fg-dim;
+  padding: 0 10px;
+}
+
+/* Search pill */
+#custom-search {
+  margin:        2px 6px;
+  min-width:     100px;
+  background:    @bg-alt;
+  border:        1px solid @border;
+  border-radius: 5px;
+}
+
+#custom-search:hover {
+  color:        @fg;
+  border-color: @fg-dim;
+  background:   alpha(@bg-alt, 0.9);
+}
+
+/* CPU */
+#cpu:hover                { color: @accent; }
+#cpu.warning              { color: @yellow; }
+#cpu.critical             { color: @red;    }
+
+/* Memory */
+#memory:hover             { color: @accent; }
+#memory.warning           { color: @yellow; }
+#memory.critical          { color: @red;    }
+
+
+/* ╔══════════════════════════════════════════════════════════╗
+   ║  CENTER — Workspaces                                     ║
+   ╚══════════════════════════════════════════════════════════╝ */
+
+#workspaces button {
+  background:  transparent;
+  color:       @fg-dim;
+  border:      none;
+  box-shadow:  none;
+  text-shadow: none;
+  padding:     0 4px;
+  font-size:   10px;
+  transition:  all 0.2s ease-in-out;
+}
+
+#workspaces button.active {
+  color:     @fg-dim;
+  font-size: 11px;
+}
+
+#workspaces button:hover {
+  background: transparent;
+  color:      @accent;
+  font-size:  12px;
+}
+
+/* Window title (icon only) */
+#window {
+  margin-left: 6px;
+  color:       @fg-dim;
+  font-size:   15px;
+}
+
+#window.empty { opacity: 0; }
+
+
+/* ╔══════════════════════════════════════════════════════════╗
+   ║  RIGHT — Power · Volume · Bluetooth · Network            ║
+   ║          Battery · Clock                                 ║
+   ╚══════════════════════════════════════════════════════════╝ */
+
+/* Shared defaults for right modules */
+#custom-power-profile,
+#pulseaudio,
+#bluetooth,
+#network,
+#battery,
+#clock {
+  color:   @fg-dim;
+  padding: 0 10px;
+}
+
+/* Power profile */
+#custom-power-profile         { color: @yellow; }
+#custom-power-profile:hover   { color: @accent; }
+
+/* Volume */
+#pulseaudio:hover             { color: @accent;  }
+#pulseaudio.muted             { color: @fg-dim; opacity: 0.5; }
+
+/* Bluetooth */
+#bluetooth.connected          { color: @fg-shine; }
+#bluetooth.connected:hover    { color: @accent;   }
+#bluetooth.off                { color: @fg-dim; opacity: 0.5; }
+#bluetooth:hover              { color: @accent; }
+
+/* Network */
+#network:hover                { color: @accent; }
+#network.disconnected         { color: @red;    }
+
+/* Battery */
+#battery.charging,
+#battery.plugged              { color: @accent;  }
+#battery.warning:not(.charging)  { color: @yellow; }
+#battery.critical:not(.charging) {
+  color:     @red;
+  animation: blink 1s linear infinite;
+}
+
+@keyframes blink {
+  to { opacity: 0.4; }
+}
+
+/* Clock */
+#clock {
+  color: @fg-shine;
+  padding-left: 0px;
+  padding-right: 10px;
+}
+
+#clock:hover                  { color: @accent; }
+
+
+/* ── Tooltip ─────────────────────────────────────────────── */
+tooltip {
+  background:    @bg-alt;
+  border:        1px solid @border;
+  border-radius: 6px;
+  padding:       6px 10px;
+  color:         @fg;
+  font-size:     12px;
+}
+
+tooltip label { color: @fg; }

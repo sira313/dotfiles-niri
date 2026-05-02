@@ -1,0 +1,82 @@
+
+#!/usr/bin/env bash
+
+# Generic UTF-8 progress bar
+# Usage: progress_bar CURRENT MAX [WIDTH] [FILLED_CHAR] [EMPTY_CHAR]
+# Returns a string of WIDTH characters (or steps) representing progress
+progress_bar() {
+    local current=$1
+    local max=$2
+    local width=${3:-10}
+    local filled_char=${4:-█}
+    local empty_char=${5:-░}
+
+    ((current<0)) && current=0
+    ((current>max)) && current=$max
+
+    local filled=$(( current * width / max ))
+    local empty=$(( width - filled ))
+
+    local bar=""
+    for ((i=0; i<filled; i++)); do bar+="$filled_char"; done
+    for ((i=0; i<empty; i++)); do bar+="$empty_char"; done
+
+    echo "$bar"
+}
+
+# Notify-send wrapper with replace ID and UTF-8 safety
+notify_replace() {
+  # defaults
+  local title=""
+  local body=""
+  local icon=""
+  local app="OSD"
+  local progress=""
+
+  # parse key=value args
+  for arg in "$@"; do
+    case $arg in
+      title=*)    title="${arg#*=}" ;;
+      body=*)     body="${arg#*=}" ;;
+      icon=*)     icon="${arg#*=}" ;;
+      app=*)      app="${arg#*=}" ;;
+      progress=*) progress="${arg#*=}" ;;
+      *)
+        echo "notify_replace: unknown arg: $arg" >&2
+        return 1
+        ;;
+    esac
+  done
+
+  # ID file & timeout
+  local id_file="${ID_FILE:-/tmp/notify.default.id}"
+  local timeout="${TIMEOUT:-3000}"
+
+  local ID=0
+  [[ -f "$id_file" ]] && read -r ID <"$id_file"
+  [[ "$ID" =~ ^[0-9]+$ ]] || ID=0
+
+  # progress hint (optional)
+  local progress_args=()
+  if [[ -n "$progress" ]]; then
+    [[ "$progress" =~ ^[0-9]+$ ]] || {
+      echo "progress must be an integer (0-100)" >&2
+      return 1
+    }
+    progress_args=(-h "int:value:$progress")
+  fi
+
+  local NEW_ID
+  NEW_ID=$(notify-send \
+    -a "$app" \
+    -r "$ID" \
+    -t "$timeout" \
+    -i "$icon" \
+    "${progress_args[@]}" \
+    --print-id \
+    -- \
+    "$title" "$body" \
+    </dev/null)
+
+  [[ "$NEW_ID" =~ ^[0-9]+$ ]] && echo "$NEW_ID" >"$id_file" || echo 0 >"$id_file"
+}

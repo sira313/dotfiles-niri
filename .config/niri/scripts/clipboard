@@ -1,0 +1,2 @@
+#!/bin/sh
+cliphist list | sed 's/\t/  /g' | tofi --prompt-text "󱘟  " | awk '{print $1}' | tr -d '\n' | cliphist decode | wl-copy && wtype -M ctrl v -m ctrl

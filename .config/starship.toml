@@ -1,0 +1,21 @@
+# ~/.config/starship.toml
+
+format = '''
+$character$directory$git_branch[✗](bold yellow) 
+'''
+
+add_newline = false
+
+[character]
+success_symbol = "[➜](bold green)"
+error_symbol = "[➜](bold red)"
+
+[directory]
+format = "[$path]($style)[$read_only]($read_only_style) "
+truncation_length = 1
+style = "bold fg:#227B94"
+read_only = ":read_only"
+read_only_style = "bold yellow"
+
+[git_branch]
+format = '[git:(\([$branch](bold fg:#B70404)\))(\([$remote_branch](bold red)\))](bold fg:#E65C19) '

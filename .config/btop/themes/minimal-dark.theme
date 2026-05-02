@@ -1,0 +1,63 @@
+# Main background
+theme[main_bg]="#0f0f0f"
+theme[main_fg]="#d4d4d4"
+
+# Title & header
+theme[title]="#89b4fa"
+theme[hi_fg]="#d4d4d4"
+
+# Selected / active
+theme[selected_bg]="#181818"
+theme[selected_fg]="#d4d4d4"
+
+# Inactive / dim text
+theme[inactive_fg]="#949494"
+
+# Graph colors
+theme[graph_text]="#d4d4d4"
+theme[graph_line]="#2a2a2a"
+
+# CPU
+theme[cpu_box]="#2a2a2a"
+theme[cpu_start]="#89b4fa"
+theme[cpu_mid]="#a6e3a1"
+theme[cpu_end]="#f38ba8"
+
+# Memory
+theme[mem_box]="#2a2a2a"
+theme[mem_start]="#89b4fa"
+theme[mem_mid]="#a6e3a1"
+theme[mem_end]="#f38ba8"
+
+# Network
+theme[net_box]="#2a2a2a"
+theme[net_start]="#89b4fa"
+theme[net_mid]="#a6e3a1"
+theme[net_end]="#f9e2af"
+
+# Process list
+theme[proc_box]="#2a2a2a"
+theme[proc_border]="#2a2a2a"
+theme[proc_misc]="#949494"
+
+# Highlighting
+theme[highlight]="#89b4fa"
+theme[selected]="#181818"
+
+# Status colors
+theme[good]="#a6e3a1"
+theme[medium]="#f9e2af"
+theme[bad]="#f38ba8"
+
+# Meter background
+theme[meter_bg]="#181818"
+
+# Borders
+theme[box]="#2a2a2a"
+theme[border]="#2a2a2a"
+
+# Misc
+theme[divider]="#2a2a2a"
+theme[temp_start]="#a6e3a1"
+theme[temp_mid]="#f9e2af"
+theme[temp_end]="#f38ba8"

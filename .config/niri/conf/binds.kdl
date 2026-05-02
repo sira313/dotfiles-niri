@@ -1,0 +1,233 @@
+binds {
+
+    // ─────────────────────────────
+    // SYSTEM
+    // ─────────────────────────────
+    Mod+Shift+Slash { show-hotkey-overlay; }
+
+    Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+
+    Mod+Shift+E { quit; }
+    Ctrl+Alt+Delete { quit; }
+
+    Mod+Shift+P { power-off-monitors; }
+
+    Mod+X {
+        spawn-sh "~/.config/niri/scripts/powermenu sink";
+    }
+
+    // ─────────────────────────────
+    // LAUNCHERS
+    // ─────────────────────────────
+    Mod+G hotkey-overlay-title="Gemini" { spawn "google-chrome-stable" "--app=https://gemini.google.com"; }
+    Mod+T { spawn "kitty"; }
+    Mod+E { spawn "nautilus"; }
+    Mod+Space { spawn "tofi-drun" "--drun-launch=true"; }
+
+    Super+Alt+S allow-when-locked=true {
+        spawn-sh "pkill orca || exec orca";
+    }
+
+    // ─────────────────────────────
+    // CLIPBOARD
+    // ─────────────────────────────
+    Mod+V {
+        spawn-sh "~/.config/niri/scripts/clipboard sink";
+    }
+
+    // ─────────────────────────────
+    // LOCK SCREEN
+    // ─────────────────────────────
+    Super+Alt+L { spawn "swaylock"; }
+
+    // ─────────────────────────────
+    // SCREEN RECORDING
+    // ─────────────────────────────
+    Mod+Alt+R {
+        spawn-sh "notify-send 'Screen Recorder' 'Recording System Audio' -i media-record && mkdir -p ~/Videos/ScreenRecord && wf-recorder --audio=alsa_output.pci-0000_06_00.6.analog-stereo.monitor -f ~/Videos/ScreenRecord/recording_$(date +%Y-%m-%d_%H-%M-%S).mp4";
+    }
+
+    Mod+Alt+S {
+        spawn-sh "killall -s SIGINT wf-recorder && notify-send 'Screen Recorder' 'Recording Saved' -i task-complete";
+    }
+
+    // ─────────────────────────────
+    // MEDIA CONTROL
+    // ─────────────────────────────
+    XF86AudioPlay { spawn-sh "playerctl play-pause"; }
+    XF86AudioStop { spawn-sh "playerctl stop"; }
+    XF86AudioPrev { spawn-sh "playerctl previous"; }
+    XF86AudioNext { spawn-sh "playerctl next"; }
+
+    // ─────────────────────────────
+    // VOLUME
+    // ─────────────────────────────
+    XF86AudioRaiseVolume allow-when-locked=true {
+        spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+ -l 1.0 && ~/.config/niri/scripts/osd sink";
+    }
+
+    XF86AudioLowerVolume allow-when-locked=true {
+        spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05- && ~/.config/niri/scripts/osd sink";
+    }
+
+    XF86AudioMute allow-when-locked=true {
+        spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && ~/.config/niri/scripts/osd sink";
+    }
+
+    XF86AudioMicMute allow-when-locked=true {
+        spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle && ~/.config/niri/scripts/osd source";
+    }
+
+    // ─────────────────────────────
+    // BRIGHTNESS
+    // ─────────────────────────────
+    XF86MonBrightnessUp allow-when-locked=true {
+        spawn-sh "brightnessctl --class=backlight set +5% | ~/.config/niri/scripts/osd brightness";
+    }
+
+    XF86MonBrightnessDown allow-when-locked=true {
+        spawn-sh "brightnessctl --class=backlight set 5%- | ~/.config/niri/scripts/osd brightness";
+    }
+
+    // ─────────────────────────────
+    // FOCUS (WINDOW)
+    // ─────────────────────────────
+    Mod+H { focus-column-left; }
+    Mod+J { focus-window-down; }
+    Mod+K { focus-window-up; }
+    Mod+L { focus-column-right; }
+
+    Mod+Left { focus-column-left; }
+    Mod+Down { focus-window-down; }
+    Mod+Up { focus-window-up; }
+    Mod+Right { focus-column-right; }
+
+    // ─────────────────────────────
+    // MOVE WINDOW / COLUMN
+    // ─────────────────────────────
+    Mod+Ctrl+H { move-column-left; }
+    Mod+Ctrl+J { move-window-down; }
+    Mod+Ctrl+K { move-window-up; }
+    Mod+Ctrl+L { move-column-right; }
+
+    Mod+Ctrl+Left { move-column-left; }
+    Mod+Ctrl+Down { move-window-down; }
+    Mod+Ctrl+Up { move-window-up; }
+    Mod+Ctrl+Right { move-column-right; }
+
+    // ─────────────────────────────
+    // MONITOR FOCUS
+    // ─────────────────────────────
+    Mod+Shift+H { focus-monitor-left; }
+    Mod+Shift+J { focus-monitor-down; }
+    Mod+Shift+K { focus-monitor-up; }
+    Mod+Shift+L { focus-monitor-right; }
+
+    Mod+Shift+Left { focus-monitor-left; }
+    Mod+Shift+Down { focus-monitor-down; }
+    Mod+Shift+Up { focus-monitor-up; }
+    Mod+Shift+Right { focus-monitor-right; }
+
+    // ─────────────────────────────
+    // WORKSPACES
+    // ─────────────────────────────
+    Mod+U { focus-workspace-down; }
+    Mod+I { focus-workspace-up; }
+
+    Mod+Page_Down { focus-workspace-down; }
+    Mod+Page_Up { focus-workspace-up; }
+
+    Mod+Ctrl+U { move-column-to-workspace-down; }
+    Mod+Ctrl+I { move-column-to-workspace-up; }
+
+    Mod+Shift+U { move-workspace-down; }
+    Mod+Shift+I { move-workspace-up; }
+
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+9 { focus-workspace 9; }
+
+    Mod+Ctrl+1 { move-column-to-workspace 1; }
+    Mod+Ctrl+2 { move-column-to-workspace 2; }
+    Mod+Ctrl+3 { move-column-to-workspace 3; }
+    Mod+Ctrl+4 { move-column-to-workspace 4; }
+    Mod+Ctrl+5 { move-column-to-workspace 5; }
+    Mod+Ctrl+6 { move-column-to-workspace 6; }
+    Mod+Ctrl+7 { move-column-to-workspace 7; }
+    Mod+Ctrl+8 { move-column-to-workspace 8; }
+    Mod+Ctrl+9 { move-column-to-workspace 9; }
+
+    // ─────────────────────────────
+    // LAYOUT / WINDOW STATE
+    // ─────────────────────────────
+    Mod+Q { close-window; }
+
+    Mod+O { toggle-overview; }
+    Mod+D { toggle-overview; }
+
+    Mod+F { maximize-column; }
+    Mod+Shift+F { fullscreen-window; }
+    Mod+M { maximize-window-to-edges; }
+
+    Mod+C { center-column; }
+    Mod+Ctrl+C { center-visible-columns; }
+
+    Mod+Ctrl+F { expand-column-to-available-width; }
+
+    Mod+R { switch-preset-column-width; }
+    Mod+Shift+R { switch-preset-column-width-back; }
+
+    Mod+Ctrl+R { reset-window-height; }
+    Mod+Ctrl+Shift+R { switch-preset-window-height; }
+
+    Mod+Minus { set-column-width "-10%"; }
+    Mod+Equal { set-column-width "+10%"; }
+
+    Mod+Shift+Minus { set-window-height "-10%"; }
+    Mod+Shift+Equal { set-window-height "+10%"; }
+
+    Mod+W { toggle-column-tabbed-display; }
+
+    Mod+Shift+T { toggle-window-floating; }
+    Mod+Shift+V { switch-focus-between-floating-and-tiling; }
+
+    Mod+BracketLeft { consume-or-expel-window-left; }
+    Mod+BracketRight { consume-or-expel-window-right; }
+
+    Mod+Comma { consume-window-into-column; }
+    Mod+Period { expel-window-from-column; }
+
+    // ─────────────────────────────
+    // SCROLL NAVIGATION
+    // ─────────────────────────────
+    Mod+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
+    Mod+WheelScrollUp cooldown-ms=150 { focus-workspace-up; }
+
+    Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
+    Mod+Ctrl+WheelScrollUp cooldown-ms=150 { move-column-to-workspace-up; }
+
+    Mod+WheelScrollRight { focus-column-right; }
+    Mod+WheelScrollLeft { focus-column-left; }
+
+    Mod+Ctrl+WheelScrollRight { move-column-right; }
+    Mod+Ctrl+WheelScrollLeft { move-column-left; }
+
+    Mod+Shift+WheelScrollDown { focus-column-right; }
+    Mod+Shift+WheelScrollUp { focus-column-left; }
+
+    Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
+    Mod+Ctrl+Shift+WheelScrollUp { move-column-left; }
+
+    // ─────────────────────────────
+    // SCREENSHOT
+    // ─────────────────────────────
+    Print { screenshot; }
+    Ctrl+Print { screenshot-screen; }
+    Alt+Print { screenshot-window; }
+}

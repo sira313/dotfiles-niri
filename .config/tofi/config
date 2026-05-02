@@ -1,0 +1,41 @@
+# Place
+anchor = top-left
+margin-top = 10
+margin-left = 10
+width = 300
+height = 400
+
+# UI
+font = monospace
+font-size = 10
+border-width = 1
+outline-width = 0
+padding-top = 2
+padding-bottom = 2
+padding-left = 5
+padding-right = 5
+corner-radius = 6
+
+# UI colors
+background-color = #181818ff
+border-color = #2a2a2aff
+text-color = #d4d4d4ff
+
+# Input colors
+prompt-text = "󰍉 "
+prompt-color = #d4d4d4ff
+input-color = #d4d4d4ff
+
+# Selection colors
+selection-color = #89b4faff
+selection-background = #00000000
+selection-background-padding = 0
+selection-background-corner-radius = 4
+
+# Search results
+default-result-color = #949494ff
+
+# Additional
+hide-cursor = false
+history = true
+fuzzy-match = true
