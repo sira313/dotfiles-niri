@@ -11,29 +11,38 @@ def parse_niri_binds():
         lines = f.readlines()
 
     results = []
+    key_pattern = re.compile(r'\"([^\"]+)\"|\b(Mod\+?\S*|Super\+?\S*|Alt\+?\S*|Ctrl\+?\S*)\b')
+
     for i in range(len(lines)):
         line = lines[i].strip()
         
         if 'hotkey-overlay-title="' in line:
-            # 1. Ambil Title
             title_match = re.search(r'hotkey-overlay-title="([^"]+)"', line)
             title = title_match.group(1) if title_match else "No Title"
 
-            # 2. Cari Key (Melacak ke atas hingga 4 baris)
             key = "Unknown"
+            found_key = False
             for j in range(i, max(-1, i-4), -1):
                 current_search_line = lines[j].strip()
+                
                 key_match = re.search(r'(?:bind\s+)?\"([^\"]+)\"|(\b(?:Mod|Super|Alt|Ctrl|Shift)\S+)', current_search_line)
                 
                 if key_match:
                     key = key_match.group(1) or key_match.group(2)
                     key = key.replace("{", "").strip()
+                    found_key = True
                     break
             
-            # Hanya simpan Key dan Title
-            results.append(f"{key:<22} │ {title}")
+            cmd = ""
+            for k in range(i, min(len(lines), i+4)):
+                if "spawn" in lines[k]:
+                    cmd_match = re.search(r'spawn(?:-sh)?\s+"([^"]+)"', lines[k])
+                    if cmd_match:
+                        cmd = cmd_match.group(1).strip()
+                        break
+            
+            results.append(f"{key:<22} │ {title:<30} │ {cmd}")
 
-    # Print hasil unik dan terurut
     for item in sorted(set(results)):
         print(item)
 
