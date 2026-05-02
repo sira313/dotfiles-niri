@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 # powermenu.sh — power menu via tofi
-# Bind ke niri: Meta + X
 
 OPTIONS="󰗽 Logout\n󰑓 Reboot\n Shutdown\n󰤄 Suspend\n󰌾 Lock"
 
-CHOICE=$(printf "$OPTIONS" | tofi --prompt-text "Power")
+CHOICE=$(printf "$OPTIONS" | tofi --height 140 --prompt-text "Power")
 
 case "$CHOICE" in
     *Logout)
@@ -20,7 +19,6 @@ case "$CHOICE" in
         systemctl suspend
         ;;
     *Lock)
-        # Ganti dengan locker favoritmu: swaylock, hyprlock, dll
         if command -v swaylock &>/dev/null; then
             swaylock
         elif command -v hyprlock &>/dev/null; then
