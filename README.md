@@ -45,9 +45,9 @@ paru -S fish \
   ttf-firacode-nerd \
   swaylock swaybg \
   bluetui nmtui \
-  ryzenadj \
+  ryzenadj
 ```
-Note: Ryzenadj is optional
+> Note: Ryzenadj is optional
 
 ### Config
 Copy All dir & file exactly the same path
