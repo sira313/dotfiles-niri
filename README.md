@@ -1,24 +1,36 @@
-![ss](https://raw.githubusercontent.com/sira313/dotfiles-niri/refs/heads/main/Screenshots/ss.png)
 # Arch + Niri + Waybar
-After install minimal Arch Linux with archinstall
 
-### Setup home dir
-```
+![screenshot](https://raw.githubusercontent.com/sira313/dotfiles-niri/refs/heads/main/Screenshots/ss.png)
+
+## Table of Contents
+- [Setup Home Directory](#setup-home-directory)
+- [Install Paru](#install-paru)
+- [Install Prerequisites](#install-prerequisites)
+- [Configuration](#configuration)
+- [Btrfs + Snapper](#btrfs--snapper)
+- [Tips](#tips)
+  - [Xorg-based Apps](#xorg-based-apps)
+  - [Samba](#samba)
+  - [Windows VM](#windows-vm)
+- [Keyboard Shortcuts](#keyboard-shortcuts)
+
+## Setup Home Directory
+
+```bash
 sudo pacman -S xdg-user-dirs && xdg-user-dirs-update
 ```
 
-### Install Paru
-```
+## Install Paru
+
+```bash
 sudo pacman -S --needed base-devel git
-```
-```
 git clone https://aur.archlinux.org/paru.git && cd paru
-```
-```
 makepkg -si
 ```
-### Install Prerequisites
-```
+
+## Install Prerequisites
+
+```bash
 paru -S fish \
   nano btop fastfetch \
   brightnessctl \
@@ -47,57 +59,78 @@ paru -S fish \
   bluetui nmtui \
   ryzenadj
 ```
-> Note: Ryzenadj is optional
 
-### Config
-Copy All dir & file exactly the same path
+> **Note:** `ryzenadj` is optional.
 
-Ugh oh, dot forget starship
-```
+## Configuration
+
+Copy all directories and files to the exact same paths as in this repo.
+
+Don't forget to install **Starship** prompt:
+
+```bash
 curl -sS https://starship.rs/install.sh | sh
 ```
-#### Btrfs + Snapper
-```
+
+## Btrfs + Snapper
+
+Install Snapper:
+
+```bash
 paru -S snapper
 ```
-I used to make it manual only root
-```
+
+Create a manual-only config for root:
+
+```bash
 sudo snapper -c root create-config /
 ```
-Edit `/etc/snapper/configs/root`
 
-Make it just like this
+Edit `/etc/snapper/configs/root` and set:
+
 ```
 TIMELINE_CREATE="no"
 TIMELINE_CLEANUP="no"
 ```
-And then
-```
+
+Disable automatic snapshot timers:
+
+```bash
 sudo systemctl stop snapper-timeline.timer
 sudo systemctl disable snapper-timeline.timer
 sudo systemctl stop snapper-cleanup.timer
 sudo systemctl disable snapper-cleanup.timer
 ```
-You can use command:
 
-`snap` To make a snapshot
+### Snapshot Commands
 
-`snap-list` View the snapshot list
+| Command | Description |
+|---------|-------------|
+| `snap` | Create a snapshot |
+| `snap-list` | View the snapshot list |
+| `snap-del` | Delete a snapshot |
 
-`snap-del` Delete the snapshot
+## Tips
 
-## Tips 
-###
-Open xorg based apps we must install this
-```
+### Xorg-based Apps
+
+To run Xorg-based apps under Wayland, install:
+
+```bash
 sudo pacman -S xwayland-satellite
 ```
+
 ### Samba
-```
+
+Edit the Samba config:
+
+```bash
 nano /etc/samba/smb.conf
 ```
-Put this config
-```
+
+Add the following:
+
+```ini
 [global]
    workgroup = WORKGROUP
    server string = Arch Samba
@@ -111,46 +144,49 @@ Put this config
    guest only = yes
    force user = YourUsername
 ```
-Add user
-```
+
+Add and activate a Samba user:
+
+```bash
 sudo smbpasswd -a YourUsername
-```
-Activate user
-```
 sudo smbpasswd -e YourUsername
 ```
-Allow port
-```
+
+Allow Samba through the firewall:
+
+```bash
 sudo ufw allow 137,138/udp
 sudo ufw allow 139,445/tcp
 sudo ufw reload
 ```
-Share Public dir
-```
-share-on
-```
-Stop share Public dir
-```
-share-off
-```
 
-### Windows
-Copy windows11.iso to `~/Documents/iso`
-```
+### Samba Commands
+
+| Command | Description |
+|---------|-------------|
+| `share-on` | Share the Public directory |
+| `share-off` | Stop sharing the Public directory |
+
+### Windows VM
+
+Copy `windows11.iso` to `~/Documents/iso`, then:
+
+```bash
 cd Documents/windows11/ && podman-compose up -d && podman-compose logs -f
 ```
-Wait installation finish, debloat it!!!
 
-#### Shortcut
-Press `meta` + `space` search `Start Win` to start windows and freerdp. Use `Stop Win` to stop the service.
+Wait for the installation to finish, then debloat it.
 
-### Important shortcut
-`Meta + T` Kitty
+To manage the Windows VM, press `Meta + Space` and search:
+- **Start Win** — start Windows and FreeRDP
+- **Stop Win** — stop the service
 
-`Meta + E` Nautilus
+## Keyboard Shortcuts
 
-`Meta + Space` App launcher
-
-`Meta + Shift + /` Shortcut list
-
-`Meta + x` Power menu
+| Shortcut | Action |
+|----------|--------|
+| `Meta + T` | Open Kitty terminal |
+| `Meta + E` | Open Nautilus file manager |
+| `Meta + Space` | Open app launcher |
+| `Meta + Shift + /` | View shortcut list |
+| `Meta + X` | Open power menu |
