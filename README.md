@@ -52,6 +52,11 @@ paru -S fish \
 ### Config
 Copy All dir & file exactly the same path
 
+Ugh oh, dot forget starship
+```
+curl -sS https://starship.rs/install.sh | sh
+```
+
 ## Tips 
 ###
 Open xorg based apps we must install this
