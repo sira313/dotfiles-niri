@@ -25,6 +25,12 @@ input {
     focus-follows-mouse
 }
 
+gestures {
+    hot-corners {
+        off
+    }
+}
+
 
 // ─────────────────────────── OUTPUT (example) ─────────────────────
 /-output "eDP-1" {
@@ -86,7 +92,9 @@ spawn-sh-at-startup "swaybg -i $HOME/Pictures/Wallpapers/forrest.jpg -m fill"
 spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store"
 spawn-at-startup "wl-paste" "--type" "image" "--watch" "cliphist" "store"
 
-hotkey-overlay { }
+hotkey-overlay { 
+    skip-at-startup
+}
 
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
