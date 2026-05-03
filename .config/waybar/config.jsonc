@@ -3,7 +3,7 @@
 // ╚══════════════════════════════════════════════════════════╝
 {
   // ── Bar geometry ──────────────────────────────────────────
-  "layer":     "bottom",
+  "layer":     "top",
   "position":  "top",
   "exclusive": false,
   "passthrough": false,
@@ -17,14 +17,14 @@
 
   // ── Layout ────────────────────────────────────────────────
   "modules-left": [
-    "custom/search",
     "cpu",
     "memory",
-    "disk"
+    "disk",
+    "niri/workspaces"
   ],
 
   "modules-center": [
-    "niri/workspaces"
+    "custom/search"
   ],
 
   "modules-right": [
@@ -40,13 +40,6 @@
   // ╔══════════════════════════════════════════════════════════╗
   // ║  LEFT                                                    ║
   // ╚══════════════════════════════════════════════════════════╝
-
-  // ── Search ────────────────────────────────────────────────
-  "custom/search": {
-    "format":   "󰍉 Search",
-    "tooltip":  false,
-    "on-click": "tofi-drun --drun-launch=true"
-  },
 
   // ── CPU ───────────────────────────────────────────────────
   "cpu": {
@@ -71,20 +64,25 @@
     "tooltip-format": "{used} / {total} ({percentage_free}% free)",
     "on-click": "kitty --class btop-float -e btop" 
   },
-
-  // ╔══════════════════════════════════════════════════════════╗
-  // ║  CENTER                                                  ║
-  // ╚══════════════════════════════════════════════════════════╝
-
   // ── Workspaces ────────────────────────────────────────────
   "niri/workspaces": {
     "all-outputs": false,
     "format": "{icon}",
     "format-icons": {
       "active":  "●",
-      "default": "○",
-      "empty":   "○"
+      "default": "○"
     }
+  },
+
+  // ╔══════════════════════════════════════════════════════════╗
+  // ║  CENTER                                                  ║
+  // ╚══════════════════════════════════════════════════════════╝
+
+  // ── Search ────────────────────────────────────────────────
+  "custom/search": {
+    "format":   "󰍉 Search",
+    "tooltip":  false,
+    "on-click": "tofi-drun --drun-launch=true"
   },
 
   // ╔══════════════════════════════════════════════════════════╗

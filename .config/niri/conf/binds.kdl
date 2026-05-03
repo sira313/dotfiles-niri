@@ -17,6 +17,10 @@ binds {
     Mod+X hotkey-overlay-title="Power Menu" {
         spawn-sh "~/.config/niri/scripts/powermenu sink";
     }
+    
+    Mod+Shift+Period hotkey-overlay-title="Show Emoji" {
+        spawn "rofimoji" "--selector" "fuzzel" "--action" "type" "--prompt" " "
+    }
 
     // ─────────────────────────────
     // LAUNCHERS
@@ -24,7 +28,7 @@ binds {
     Mod+G hotkey-overlay-title="Gemini" { spawn "google-chrome-stable" "--app=https://gemini.google.com"; }
     Mod+T hotkey-overlay-title="Terminal" { spawn "kitty"; }
     Mod+E hotkey-overlay-title="File Manager" { spawn "nautilus"; }
-    Mod+Space hotkey-overlay-title="App Launcher" { spawn "tofi-drun" "--drun-launch=true"; }
+    Mod+Space hotkey-overlay-title="App Launcher" { spawn "fuzzel" "--no-icons"; }
 
     // ─────────────────────────────
     // CLIPBOARD

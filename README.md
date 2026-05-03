@@ -52,7 +52,7 @@ paru -S fish \
   podman-compose \
   mako \
   waybar \
-  tofi \
+  fuzzel rofimoji \
   ttf-firacode-nerd \
   swaylock swaybg \
   bluetui nmtui \

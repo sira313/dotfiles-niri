@@ -1,4 +1,11 @@
-#!/bin/sh
-cliphist list | awk -F'\t' '{print $2 "                                         " $1}' | \
-tofi --prompt-text "󱘟  " | \
-awk '{print $NF}' | tr -d '\n' | cliphist decode | wl-copy && wtype -M ctrl v -m ctrldmesg | grep -i "Memory:"
+#!/usr/bin/fish
+
+# Mengambil list clipboard, memformat tampilan, dan memproses pilihan
+cliphist list | \
+fuzzel --dmenu --prompt="󱘟  " | \
+awk '{print $1}' | \
+cliphist decode | \
+wl-copy
+
+# Menjalankan simulasi paste (Ctrl+V)
+wtype -M ctrl v -m ctrl

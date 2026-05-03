@@ -57,11 +57,10 @@ window#waybar {
 
 
 /* ╔══════════════════════════════════════════════════════════╗
-   ║  LEFT — Search · CPU · Memory · Disk                     ║
+   ║  LEFT — CPU · Memory · Disk · Workspaces                 ║
    ╚══════════════════════════════════════════════════════════╝ */
 
 /* Shared defaults for left modules */
-#custom-search,
 #cpu,
 #memory,
 #disk {
@@ -69,22 +68,8 @@ window#waybar {
   padding: 0 10px;
 }
 
-/* Search pill */
-#custom-search {
-  margin:        2px 6px;
-  min-width:     100px;
-  background:    @bg-alt;
-  border:        1px solid @border;
-  border-radius: 5px;
-}
-
-#custom-search:hover {
-  color:        @fg;
-  border-color: @fg-dim;
-  background:   alpha(@bg-alt, 0.9);
-}
-
 /* CPU */
+#cpu                     { margin-left: 10px; }
 #cpu:hover                { color: @accent; }
 #cpu.warning              { color: @yellow; }
 #cpu.critical             { color: @red;    }
@@ -99,11 +84,7 @@ window#waybar {
 #disk.warning           { color: @yellow; }
 #disk.critical          { color: @red;    }
 
-
-/* ╔══════════════════════════════════════════════════════════╗
-   ║  CENTER — Workspaces                                     ║
-   ╚══════════════════════════════════════════════════════════╝ */
-
+/* Workspaces */
 #workspaces button {
   background:  transparent;
   color:       @fg-dim;
@@ -126,14 +107,38 @@ window#waybar {
   font-size:  12px;
 }
 
+
+/* ╔══════════════════════════════════════════════════════════╗
+   ║  CENTER — Custom Search                                  ║
+   ╚══════════════════════════════════════════════════════════╝ */
+
+/* Search pill */
+
+#custom-search {
+  color:   @fg-dim;
+  padding: 0 10px;
+}
+
+#custom-search {
+  margin:        6px 0;
+  min-width:     150px;
+  background:    @bg-alt;
+  border:        1px solid @border;
+  border-radius: 5px;
+}
+
+#custom-search:hover {
+  color:        @fg;
+  border-color: @fg-dim;
+  background:   alpha(@bg-alt, 0.9);
+}
+
 /* Window title (icon only) */
 #window {
   margin-left: 6px;
   color:       @fg-dim;
   font-size:   15px;
 }
-
-#window.empty { opacity: 0; }
 
 
 /* ╔══════════════════════════════════════════════════════════╗
@@ -214,7 +219,7 @@ window#waybar {
 
 /* ── Tooltip ─────────────────────────────────────────────── */
 tooltip {
-  background:    @bg-alt;
+  background:    alpha(@bg-alt, 0.99);
   border:        1px solid @border;
   border-radius: 6px;
   padding:       6px 10px;

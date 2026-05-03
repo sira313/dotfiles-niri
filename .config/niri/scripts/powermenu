@@ -1,30 +1,27 @@
-#!/usr/bin/env bash
-# powermenu.sh — power menu via tofi
+#!/usr/bin/fish
 
-OPTIONS="󰗽 Logout\n󰑓 Reboot\n Shutdown\n󰤄 Suspend\n󰌾 Lock"
+# Definisi opsi dengan ikon
+set options "󰗽 Logout\n󰑓 Reboot\n Shutdown\n󰤄 Suspend\n󰌾 Lock"
 
-CHOICE=$(printf "$OPTIONS" | tofi --height 140 --prompt-text "Power")
+# Memanggil fuzzel dalam mode dmenu
+set choice (printf $options | fuzzel --dmenu --prompt="Power: " --lines=5 --width=20)
 
-case "$CHOICE" in
-    *Logout)
+# Logika pemilihan menggunakan switch (syntax fish)
+switch $choice
+    case "*Logout"
         niri msg action quit --skip-confirmation
-        ;;
-    *Reboot)
+    case "*Reboot"
         systemctl reboot
-        ;;
-    *Shutdown)
+    case "*Shutdown"
         systemctl poweroff
-        ;;
-    *Suspend)
+    case "*Suspend"
         systemctl suspend
-        ;;
-    *Lock)
-        if command -v swaylock &>/dev/null; then
-            swaylock
-        elif command -v hyprlock &>/dev/null; then
+    case "*Lock"
+        if command -v hyprlock >/dev/null
             hyprlock
+        else if command -v swaylock >/dev/null
+            swaylock
         else
-            echo "No screen locker found" >&2
-        fi
-        ;;
-esac
+            notify-send "Error" "No screen locker found"
+        end
+end

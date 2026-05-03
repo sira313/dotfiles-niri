@@ -3,6 +3,8 @@ layout {
     gaps 5
     center-focused-column "never"
 
+    background-color "transparent"
+
     preset-column-widths {
         proportion 0.33333
         proportion 0.5
@@ -25,7 +27,7 @@ layout {
         width 0
         active-color "#ffc87f"
         inactive-color "#505050"
-        urgent-color "#9b0000"
+        urgent-color "#aa3737"
     }
 
     // Shadow
@@ -37,6 +39,17 @@ layout {
     }
 
     struts {
-        top 43
+        top 42
      }
+}
+
+layer-rule {
+    match namespace="^wallpaper$"
+    place-within-backdrop true
+}
+
+overview {
+    workspace-shadow {
+        off
+    }
 }
