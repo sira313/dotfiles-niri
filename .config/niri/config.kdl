@@ -87,6 +87,7 @@ layout {
 spawn-at-startup "waybar"
 spawn-at-startup "mako"
 
+spawn-at-startup "swayidle" "-w" "timeout" "120" "niri msg action power-off-monitors" "resume" "niri msg action power-on-monitors" "timeout" "180" "systemctl suspend" "before-sleep" "swaylock -f"
 spawn-sh-at-startup "swaybg -i $HOME/Pictures/Wallpapers/forrest.jpg -m fill"
 
 spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store"
