@@ -1,0 +1,35 @@
+// ─────────────────────────── WINDOW RULES ─────────────────────────
+
+// WezTerm fix
+window-rule {
+    match app-id=r#"^org\.wezfurlong\.wezterm$"#
+    default-column-width {}
+}
+
+// Firefox Picture-in-Picture floating
+window-rule {
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    open-floating true
+}
+
+// Rounded corners (global)
+window-rule {
+    geometry-corner-radius 8
+    clip-to-geometry true
+}
+
+// Inactive window dim + blur
+window-rule {
+    match is-active=false
+    opacity 0.90
+
+    background-effect {
+        blur true
+    }
+}
+
+// Floating shadow enhancement
+window-rule {
+    match is-floating=true
+    shadow { on; }
+}

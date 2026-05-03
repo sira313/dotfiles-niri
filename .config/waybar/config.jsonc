@@ -5,7 +5,7 @@
   // ── Bar geometry ──────────────────────────────────────────
   "layer":     "bottom",
   "position":  "top",
-  "exclusive": true,
+  "exclusive": false,
   "passthrough": false,
 
   "height":      38,
@@ -19,7 +19,8 @@
   "modules-left": [
     "custom/search",
     "cpu",
-    "memory"
+    "memory",
+    "disk"
   ],
 
   "modules-center": [
@@ -27,6 +28,7 @@
   ],
 
   "modules-right": [
+    "tray",
     "custom/power-profile",
     "pulseaudio",
     "bluetooth",
@@ -61,6 +63,14 @@
     "tooltip-format": "{used:0.1f}G / {total:0.1f}G",
     "on-click":      "kitty --class btop-float -e btop"
   },
+  // ── Disk (Storage) ────────────────────────────────────────
+  "disk": {
+    "interval": 30,
+    "path": "/", 
+    "format": "󰋊 {percentage_used}%",
+    "tooltip-format": "{used} / {total} ({percentage_free}% free)",
+    "on-click": "kitty --class btop-float -e btop" 
+  },
 
   // ╔══════════════════════════════════════════════════════════╗
   // ║  CENTER                                                  ║
@@ -80,6 +90,13 @@
   // ╔══════════════════════════════════════════════════════════╗
   // ║  RIGHT                                                   ║
   // ╚══════════════════════════════════════════════════════════╝
+
+
+  // ── System tray ───────────────────────────────────────────
+  "tray": {
+      "icon-size": 12,
+      "spacing": 10
+  },
 
   // ── Power Profile ─────────────────────────────────────────
   "custom/power-profile": {

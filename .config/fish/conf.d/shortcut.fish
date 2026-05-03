@@ -73,3 +73,11 @@ function share-off
         echo "Samba stopped successfully."
     end
 end
+
+# Bersihkan riwayat clipboard
+function clip-wipe --description 'Menghapus semua riwayat clipboard cliphist'
+    cliphist wipe && notify-send "Clipboard" "History cleared!"
+    if test $status -eq 0
+        echo "Clipboard history wiped clean."
+    end
+end

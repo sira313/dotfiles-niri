@@ -1,142 +1,16 @@
-// ───────────────────────────── INPUT ─────────────────────────────
-input {
-    keyboard {
-        xkb {
-            // layout "us,ru"
-            // options "grp:win_space_toggle"
-        }
-        numlock
-    }
+// ───────────────────────── GLOBAL OPTIONS ─────────────────────────
+prefer-no-csd
 
-    touchpad {
-        tap
-        natural-scroll
-    }
-
-    mouse {
-        natural-scroll
-    }
-
-    trackpoint {
-        natural-scroll
-    }
-
-    warp-mouse-to-focus
-    focus-follows-mouse
-}
-
-gestures {
-    hot-corners {
-        off
-    }
-}
-
-
-// ─────────────────────────── OUTPUT (example) ─────────────────────
-/-output "eDP-1" {
-    mode "1920x1080@120.030"
-    scale 2
-    transform "normal"
-    position x=1280 y=0
-}
-
-
-// ───────────────────────────── LAYOUT ─────────────────────────────
-layout {
-    gaps 5
-    center-focused-column "never"
-
-    preset-column-widths {
-        proportion 0.33333
-        proportion 0.5
-        proportion 0.66667
-    }
-
-    default-column-width { proportion 0.5; }
-
-    // Focus ring
-    focus-ring {
-        off
-        width 4
-        active-color "#7fc8ff"
-        inactive-color "#505050"
-    }
-
-    // Border
-    border {
-        off
-        width 0
-        active-color "#ffc87f"
-        inactive-color "#505050"
-        urgent-color "#9b0000"
-    }
-
-    // Shadow
-    shadow {
-        softness 30
-        spread 5
-        offset x=0 y=5
-        color "#0007"
-    }
-
-    struts { }
-}
-
-
-// ───────────────────────── STARTUP SERVICES ───────────────────────
-spawn-at-startup "waybar"
-spawn-at-startup "mako"
-
-spawn-at-startup "swayidle" "-w" "timeout" "120" "niri msg action power-off-monitors" "resume" "niri msg action power-on-monitors" "timeout" "180" "systemctl suspend" "before-sleep" "swaylock -f"
-spawn-sh-at-startup "swaybg -i $HOME/Pictures/Wallpapers/forrest.jpg -m fill"
-
-spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store"
-spawn-at-startup "wl-paste" "--type" "image" "--watch" "cliphist" "store"
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 hotkey-overlay { 
     skip-at-startup
 }
 
-screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
-
-
-// ───────────────────────── GLOBAL OPTIONS ─────────────────────────
-prefer-no-csd
+// ───────────────────────── CONFIGURATION ───────────────────────────
 include "conf/binds.kdl"
-
-
-// ─────────────────────────── WINDOW RULES ─────────────────────────
-
-// WezTerm fix
-window-rule {
-    match app-id=r#"^org\.wezfurlong\.wezterm$"#
-    default-column-width {}
-}
-
-// Firefox Picture-in-Picture floating
-window-rule {
-    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
-    open-floating true
-}
-
-// Rounded corners (global)
-window-rule {
-    geometry-corner-radius 8
-    clip-to-geometry true
-}
-
-// Inactive window dim + blur
-window-rule {
-    match is-active=false
-    opacity 0.90
-
-    background-effect {
-        blur true
-    }
-}
-
-// Floating shadow enhancement
-window-rule {
-    match is-floating=true
-    shadow { on; }
-}
+include "conf/input.kdl"
+include "conf/layout.kdl"
+include "conf/window-rules.kdl"
+include "conf/output.kdl"
+include "conf/startup.kdl"

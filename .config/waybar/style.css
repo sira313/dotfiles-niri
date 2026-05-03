@@ -57,13 +57,14 @@ window#waybar {
 
 
 /* ╔══════════════════════════════════════════════════════════╗
-   ║  LEFT — Search · CPU · Memory                            ║
+   ║  LEFT — Search · CPU · Memory · Disk                     ║
    ╚══════════════════════════════════════════════════════════╝ */
 
 /* Shared defaults for left modules */
 #custom-search,
 #cpu,
-#memory {
+#memory,
+#disk {
   color:   @fg-dim;
   padding: 0 10px;
 }
@@ -92,6 +93,11 @@ window#waybar {
 #memory:hover             { color: @accent; }
 #memory.warning           { color: @yellow; }
 #memory.critical          { color: @red;    }
+
+/* Disk */
+#disk:hover             { color: @accent; }
+#disk.warning           { color: @yellow; }
+#disk.critical          { color: @red;    }
 
 
 /* ╔══════════════════════════════════════════════════════════╗
@@ -136,6 +142,7 @@ window#waybar {
    ╚══════════════════════════════════════════════════════════╝ */
 
 /* Shared defaults for right modules */
+#tray,
 #custom-power-profile,
 #pulseaudio,
 #bluetooth,
@@ -144,6 +151,24 @@ window#waybar {
 #clock {
   color:   @fg-dim;
   padding: 0 10px;
+}
+
+/* System Tray */
+#tray {
+    padding: 0 10px;
+}
+
+#tray > widget > button {
+    padding: 0 5px;
+    background: transparent;
+}
+
+#tray > widget > button.passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > widget > button.needs-attention {
+    color: @red;
 }
 
 /* Power profile */
@@ -181,7 +206,7 @@ window#waybar {
 #clock {
   color: @fg-shine;
   padding-left: 0px;
-  padding-right: 10px;
+  padding-right: 15px;
 }
 
 #clock:hover                  { color: @accent; }

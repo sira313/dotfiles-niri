@@ -1,0 +1,32 @@
+// ───────────────────────────── INPUT ─────────────────────────────
+input {
+    keyboard {
+        xkb {
+            // layout "us,ru"
+            // options "grp:win_space_toggle"
+        }
+        numlock
+    }
+
+    touchpad {
+        tap
+        natural-scroll
+    }
+
+    mouse {
+        natural-scroll
+    }
+
+    trackpoint {
+        natural-scroll
+    }
+
+    warp-mouse-to-focus
+    focus-follows-mouse
+}
+
+gestures {
+    hot-corners {
+        off
+    }
+}
