@@ -1,2 +1,4 @@
 #!/bin/sh
-cliphist list | sed 's/\t/  /g' | tofi --prompt-text "󱘟  " | awk '{print $1}' | tr -d '\n' | cliphist decode | wl-copy && wtype -M ctrl v -m ctrl
+cliphist list | awk -F'\t' '{print $2 "                                         " $1}' | \
+tofi --prompt-text "󱘟  " | \
+awk '{print $NF}' | tr -d '\n' | cliphist decode | wl-copy && wtype -M ctrl v -m ctrldmesg | grep -i "Memory:"
