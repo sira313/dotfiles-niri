@@ -4,7 +4,7 @@
 set options "󰗽 Logout\n󰑓 Reboot\n Shutdown\n󰤄 Suspend\n󰌾 Lock"
 
 # Memanggil fuzzel dalam mode dmenu
-set choice (printf $options | fuzzel --dmenu --prompt="Power: " --lines=5 --width=20)
+set choice (printf $options | fuzzel --dmenu --prompt="󰍉 " --lines=5 --width=20)
 
 # Logika pemilihan menggunakan switch (syntax fish)
 switch $choice

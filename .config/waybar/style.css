@@ -3,8 +3,8 @@
    ╚══════════════════════════════════════════════════════════╝
 
    Layout:
-     Left   — search | cpu | memory
-     Center — workspaces
+     Left   — mpris | cpu | memory | disk | workspaces
+     Center — search
      Right  — power-profile | volume | bluetooth | network | battery | clock
 */
 
@@ -34,18 +34,20 @@
   margin:        0;
 }
 
+.modules-left {
+    padding-left: 15px;
+}
+
+.modules-right {
+    padding-right: 15px;
+}
+
 /* ── Bar ─────────────────────────────────────────────────── */
 window#waybar {
   background:    alpha(@bg, 0.99);
   border:        none;
   border-radius: 8px;
   color:         @fg;
-}
-
-/* ── Section margins ─────────────────────────────────────── */
-.modules-left,
-.modules-right {
-  margin: 4px 0;
 }
 
 /* ── Smooth hover transition (all modules) ───────────────── */
@@ -57,19 +59,62 @@ window#waybar {
 
 
 /* ╔══════════════════════════════════════════════════════════╗
-   ║  LEFT — CPU · Memory · Disk · Workspaces                 ║
+   ║  LEFT — MPRIS · CPU · Memory · Disk · Workspaces         ║
    ╚══════════════════════════════════════════════════════════╝ */
 
 /* Shared defaults for left modules */
+#mpris,
 #cpu,
 #memory,
 #disk {
   color:   @fg-dim;
-  padding: 0 10px;
+  padding: 0 5px;
+}
+
+/* MPRIS */
+#mpris:hover {
+  color: @accent;
+}
+
+/* No player */
+#mpris.stopped {
+  opacity: 0.45;
+}
+
+/* Paused */
+#mpris.paused {
+  opacity: 0.65;
+}
+
+/* Playing */
+#mpris.playing {
+  color: @fg-shine;
+}
+
+/* Player specific */
+#mpris.spotify {
+  color: @green;
+}
+
+#mpris.firefox,
+#mpris.chromium,
+#mpris.brave {
+  color: @fg-shine;
+}
+
+#mpris.mpv {
+  color: @fg-shine;
+}
+
+#mpris:hover.spotify,
+#mpris:hover.firefox,
+#mpris:hover.chromium,
+#mpris:hover.brave,
+#mpris:hover.mpv {
+  color: @accent;
 }
 
 /* CPU */
-#cpu                     { margin-left: 10px; }
 #cpu:hover                { color: @accent; }
 #cpu.warning              { color: @yellow; }
 #cpu.critical             { color: @red;    }
@@ -91,9 +136,9 @@ window#waybar {
   border:      none;
   box-shadow:  none;
   text-shadow: none;
-  padding:     0 4px;
   font-size:   10px;
   transition:  all 0.2s ease-in-out;
+  padding: 0 3px;
 }
 
 #workspaces button.active {
@@ -133,13 +178,6 @@ window#waybar {
   background:   alpha(@bg-alt, 0.9);
 }
 
-/* Window title (icon only) */
-#window {
-  margin-left: 6px;
-  color:       @fg-dim;
-  font-size:   15px;
-}
-
 
 /* ╔══════════════════════════════════════════════════════════╗
    ║  RIGHT — Power · Volume · Bluetooth · Network            ║
@@ -155,17 +193,7 @@ window#waybar {
 #battery,
 #clock {
   color:   @fg-dim;
-  padding: 0 10px;
-}
-
-/* System Tray */
-#tray {
-    padding: 0 10px;
-}
-
-#tray > widget > button {
-    padding: 0 5px;
-    background: transparent;
+  padding: 0 5px;
 }
 
 #tray > widget > button.passive {
@@ -196,7 +224,7 @@ window#waybar {
 
 /* Battery */
 #battery.charging,
-#battery.plugged              { color: @accent;  }
+#battery.plugged                 { color: @accent; }
 #battery.warning:not(.charging)  { color: @yellow; }
 #battery.critical:not(.charging) {
   color:     @red;
@@ -209,9 +237,8 @@ window#waybar {
 
 /* Clock */
 #clock {
+  padding-left: 0;
   color: @fg-shine;
-  padding-left: 0px;
-  padding-right: 15px;
 }
 
 #clock:hover                  { color: @accent; }

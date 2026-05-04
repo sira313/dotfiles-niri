@@ -76,7 +76,7 @@ end
 
 # Bersihkan riwayat clipboard
 function clip-wipe --description 'Menghapus semua riwayat clipboard cliphist'
-    cliphist wipe && notify-send "Clipboard" "History cleared!"
+    rm ~/.cache/cliphist/db && notify-send "Clipboard" "History cleared!"
     if test $status -eq 0
         echo "Clipboard history wiped clean."
     end

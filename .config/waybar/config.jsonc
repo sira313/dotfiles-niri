@@ -9,7 +9,7 @@
   "passthrough": false,
 
   "height":      38,
-  "spacing":      4,
+  "spacing":      10,
 
   "margin-top":    5,
   "margin-left":   5,
@@ -17,6 +17,7 @@
 
   // ── Layout ────────────────────────────────────────────────
   "modules-left": [
+    "mpris",
     "cpu",
     "memory",
     "disk",
@@ -64,6 +65,28 @@
     "tooltip-format": "{used} / {total} ({percentage_free}% free)",
     "on-click": "kitty --class btop-float -e btop" 
   },
+  // ── MPRIS (Media Player) ─────────────────────────────────
+  "mpris": {
+    "format": "{player_icon}    {status_icon}  ",
+    "format-paused": "{player_icon}    {status_icon}  ",
+    "format-playing": "{player_icon}    {status_icon}  ",
+
+    "player-icons": {
+        "spotify": "",
+        "firefox": "󰈹",
+        "mpv": "󰐹",
+        "default": "󰎆"
+    },
+    "status-icons": {
+        "playing": "",
+        "paused": "",
+        "stopped": ""
+    },
+    "tooltip": false,
+    "on-click": "playerctl play-pause",
+    "on-click-middle": "playerctl previous",
+    "on-click-right": "playerctl next"
+  },
   // ── Workspaces ────────────────────────────────────────────
   "niri/workspaces": {
     "all-outputs": false,
@@ -82,13 +105,12 @@
   "custom/search": {
     "format":   "󰍉 Search",
     "tooltip":  false,
-    "on-click": "tofi-drun --drun-launch=true"
+    "on-click": "fuzzel --no-icons"
   },
 
   // ╔══════════════════════════════════════════════════════════╗
   // ║  RIGHT                                                   ║
   // ╚══════════════════════════════════════════════════════════╝
-
 
   // ── System tray ───────────────────────────────────────────
   "tray": {

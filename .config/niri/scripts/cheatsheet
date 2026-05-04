@@ -7,9 +7,9 @@ RAW_LIST=$(python3 "$PYTHON_PARSER")
 # Tampilkan kolom 1 dan 2 ke fuzzel
 SELECTED=$(echo "$RAW_LIST" | cut -f1,2 | fuzzel --dmenu \
     --tabs=25 \
-    --width 60 \
-    --lines 15 \
-    --prompt "󰘳 ")
+    --width 50 \
+    --lines 20 \
+    --prompt "󰍉 ")
 
 if [ -n "$SELECTED" ]; then
     T_SEARCH=$(echo "$SELECTED" | cut -f2 | xargs)

@@ -1,11 +1,26 @@
-#!/usr/bin/fish
+#!/usr/bin/env fish
 
-# Mengambil list clipboard, memformat tampilan, dan memproses pilihan
-cliphist list | \
-fuzzel --dmenu --prompt="󱘟  " | \
-awk '{print $1}' | \
-cliphist decode | \
-wl-copy
+set selected (
+    cliphist list \
+    | cut -f2- \
+    | fuzzel --dmenu --prompt="󱘟  "
+)
 
-# Menjalankan simulasi paste (Ctrl+V)
-wtype -M ctrl v -m ctrl
+if test -n "$selected"
+
+    set clip_id (
+        cliphist list \
+        | awk -F '\t' -v selected="$selected" '
+            $2 == selected {
+                print $1
+                exit
+            }
+        '
+    )
+
+    cliphist decode $clip_id | wl-copy
+
+    sleep 0.2
+
+    wtype -M ctrl -k v -m ctrl
+end
