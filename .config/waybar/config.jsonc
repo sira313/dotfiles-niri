@@ -125,9 +125,9 @@
     "return-type": "json",
     "format":      "{icon}",
     "format-icons": {
-      "performance": "󱓞",
-      "balanced":    "󰜡",
-      "powersave":   "󰌪"
+      "performance": "󰓅",
+      "balanced":    "󰾅",
+      "powersave":   "󰾆"
     },
     "tooltip-format": "Power: {alt}",
     "on-click": "~/.config/waybar/scripts/tuned-profile.sh toggle"

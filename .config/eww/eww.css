@@ -225,10 +225,13 @@ button.qs-side-label:hover {
 
 button.qs-btn:active,
 button.qs-side-icon:active,
-button.qs-side-label:active,
 button.qs-side-icon.active {
   background-color: @accent;
   color: @bg;
+}
+
+button.qs-side-label:active {
+  background-color: alpha(@accent, .3);
 }
 
 button.qs-side-icon.active label {
@@ -305,9 +308,9 @@ button.qs-side-icon.active:hover {
 button.sys-btn {
   background-color: @bg-alt;
   color: @fg-dim;
-  padding: 14px 0;
+  padding: 10px 0;
   border-radius: 8px;
-  font-size: 18px;
+  font-size: 15px;
 }
 
 button.sys-btn:hover {

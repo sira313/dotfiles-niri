@@ -21,7 +21,7 @@ window-rule {
 // Inactive window dim + blur
 window-rule {
     match is-active=false
-    opacity 0.90
+    opacity 0.9
 
     background-effect {
         blur true
