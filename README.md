@@ -194,4 +194,4 @@ To manage the Windows VM, press `Meta + Space` and search:
 | `Meta + X` | Open power menu |
 | `Meta + Alt + R` | Record full screen |
 | `Meta + Alt + S` | Stop screen recorder |
-| `Meta + Shift + Space | Open eww dashbord |
+| `Meta + Shift + Space` | Open eww dashbord |
