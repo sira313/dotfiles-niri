@@ -1,4 +1,5 @@
 # Arch + Niri + Waybar
+![screenshot](https://raw.githubusercontent.com/sira313/dotfiles-niri/refs/heads/main/Screenshots/3.png)
 ![screenshot](https://raw.githubusercontent.com/sira313/dotfiles-niri/refs/heads/main/Screenshots/1.png)
 ![screenshot](https://raw.githubusercontent.com/sira313/dotfiles-niri/refs/heads/main/Screenshots/2.png)
 After install arch minimal with archinstall. Using systemd-boot + UKI, btrfs, tuned, and ufw
@@ -57,6 +58,7 @@ paru -S fish \
   ttf-firacode-nerd \
   swaylock swaybg \
   bluetui nmtui \
+  eww hyprpicker \
   ryzenadj
 ```
 
@@ -192,3 +194,4 @@ To manage the Windows VM, press `Meta + Space` and search:
 | `Meta + X` | Open power menu |
 | `Meta + Alt + R` | Record full screen |
 | `Meta + Alt + S` | Stop screen recorder |
+| `Meta + Z | Open eww dashbord |

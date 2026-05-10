@@ -3,9 +3,11 @@ binds {
     // ─────────────────────────────
     // SYSTEM
     // ─────────────────────────────
+    Mod+P hotkey-overlay-title="Color Picker" { spawn "sh" "-c" "hyprpicker -a"; }
     Mod+Shift+Slash hotkey-overlay-title="Cheatsheet" {
         spawn "~/.config/niri/scripts/cheatsheet"
     }
+    Mod+Z { spawn "eww" "open" "dashboard"; }
 
     Mod+Escape allow-inhibiting=false hotkey-overlay-title="Toggle Inhibitors" { toggle-keyboard-shortcuts-inhibit; }
 

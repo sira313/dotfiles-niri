@@ -1,0 +1,33 @@
+# Custom Theme for Micro
+# Based on user-provided hex colors
+
+color-link default "#d4d4d4,#0f0f0f"
+color-link comment "#2a2a2a"
+
+color-link identifier "#89b4fa"
+color-link identifier.class "#89b4fa"
+color-link identifier.var "#d4d4d4"
+
+color-link constant "#f9e2af"
+color-link constant.number "#f9e2af"
+color-link constant.string "#40a874"
+
+color-link statement "#f38ba8"
+color-link symbol "#f38ba8"
+color-link preproc "#f38ba8"
+
+color-link type "#89b4fa"
+color-link special "#f38ba8"
+color-link underlined "underline #89b4fa"
+color-link error "bold #f38ba8"
+color-link todo "bold #f9e2af"
+
+color-link statusline "#0f0f0f,#89b4fa"
+color-link tabbar "#0f0f0f,#89b4fa"
+color-link indent-char "#2a2a2a"
+color-link line-number "#2a2a2a"
+color-link current-line-number "#89b4fa"
+
+color-link cursor-line "#2a2a2a"
+color-link color-column "#2a2a2a"
+color-link type.extended "default"
