@@ -1,38 +1,38 @@
 (defpoll power_profile
   :interval "500ms"
-"~/.config/eww/scripts/power-profile.sh get")
+  "~/.config/eww/scripts/power-profile.sh get")
 
 (defpoll user_fullname
   :interval "30s"
-"~/.config/eww/scripts/user-info.sh fullname")
+  "~/.config/eww/scripts/user-info.sh fullname")
 
 (defpoll system_hostname
   :interval "60s"
-"~/.config/eww/scripts/user-info.sh hostname")
+  "~/.config/eww/scripts/user-info.sh hostname")
 
 (defpoll current_time
   :interval "1s"
-"date '+%H:%M - %a, %d %b %Y'")
+  "date '+%H:%M - %a, %d %b %Y'")
 
 (defpoll volume_value
   :interval "1s"
-"wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $2 * 100}'")
+  "wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $2 * 100}'")
 
 (defpoll volume_muted
   :interval "1s"
-"wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -q MUTED && echo yes || echo no")
+  "wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -q MUTED && echo yes || echo no")
 
 (defpoll brightness_value
   :interval "1s"
-"~/.config/eww/scripts/brightness.sh get")
+  "~/.config/eww/scripts/brightness.sh get")
 
 (defpoll wifi_status
   :interval "2s"
-"nmcli radio wifi")
+  "nmcli radio wifi")
 
 (defpoll wifi_ssid
   :interval "2s"
-"nmcli -t -f active,ssid dev wifi | grep '^yes' | cut -d: -f2")
+  "nmcli -t -f active,ssid dev wifi | grep '^yes' | cut -d: -f2")
 
 (defpoll wifi_ip
   :interval "5s"
@@ -40,23 +40,23 @@
 
 (defpoll bluetooth_status
   :interval "2s"
-"~/.config/eww/scripts/bluetooth.sh status")
+  "~/.config/eww/scripts/bluetooth.sh status")
 
 (defpoll bluetooth_name
   :interval "2s"
-"~/.config/eww/scripts/bluetooth.sh name")
+  "~/.config/eww/scripts/bluetooth.sh name")
 
 (defpoll bluetooth_mac
   :interval "2s"
-"~/.config/eww/scripts/bluetooth.sh mac")
+  "~/.config/eww/scripts/bluetooth.sh mac")
 
 (defpoll bluetooth_connected
   :interval "2s"
-"~/.config/eww/scripts/bluetooth.sh connected")
+  "~/.config/eww/scripts/bluetooth.sh connected")
 
 (defpoll root_storage
   :interval "30s"
-"df -BG / --output=used,size | tail -n1 | awk '{print $1\" / \"$2}'")
+  "df -BG / --output=used,size | tail -n1 | awk '{print $1\" / \"$2}'")
 
 
 (defwindow dashboard
@@ -68,12 +68,12 @@
     :x "0px"
     :y "0px"
     :width "100%"
-  :height "100%")
+    :height "100%")
   (overlay
     (eventbox
       :hexpand true
       :vexpand true
-    :onclick "eww close dashboard")
+      :onclick "eww close dashboard")
     (box
       :hexpand true
       :vexpand true
@@ -132,40 +132,26 @@
     :class "qs-container"
     :orientation "v"
     :spacing 8
-    
+
     (box
       :orientation "h"
       :spacing 8
       :homogeneous true
-      
-      (box
-        :orientation "h"
-        :space-evenly false
-        
+
+      (overlay
         (button
-          :class "qs-side-icon wifi ${wifi_status == 'enabled' ? 'active' : ''}"
-          :onclick "nmcli radio wifi $(nmcli radio wifi | grep -q enabled && echo off || echo on)"
-          (label
-            :text {wifi_status == "enabled" ? "󰖩" : "󰖪"}
-          )
-        )
-        
-        (button
-          :class "qs-side-label wifi"
+          :class "qs-side-label wifi overlay-label"
           :hexpand true
           :onclick "~/.config/eww/scripts/nmtui.sh &"
-          
           (box
             :orientation "v"
             :halign "start"
-            
             (label
               :class "qs-label-main"
               :halign "start"
               :limit-width 12
               :text {wifi_status == "enabled" && wifi_ssid != "" ? wifi_ssid : "WiFi Off"}
             )
-            
             (label
               :class "qs-label-sub"
               :halign "start"
@@ -173,79 +159,87 @@
             )
           )
         )
+
+        (button
+          :class "qs-side-icon wifi overlay-icon ${wifi_status == 'enabled' ? 'active' : ''}"
+          :halign "start"
+          :valign "center"
+          :onclick "nmcli radio wifi $(nmcli radio wifi | grep -q enabled && echo off || echo on)"
+          (label
+            :style "margin-right: 6px;"
+            :text {wifi_status == "enabled" ? "󰤨" : "󰤭"}
+          )
+        )
       )
-      
+
       (qs_button
         :label root_storage
         :icon "󰋊"
         :class "disk"
-      :onclick "kitty btop &")
+        :onclick "kitty btop &"
+      )
     )
-    
+
     (box
       :orientation "h"
       :spacing 8
       :homogeneous true
-      
-      (box
-        :orientation "h"
-        :space-evenly false
-        
+
+      (overlay
         (button
-          :class "qs-side-icon blue ${bluetooth_connected == 'yes' ? 'active' : ''}"
-          :onclick "~/.config/eww/scripts/bluetooth.sh toggle"
-          
-          (label
-            :text {
-            bluetooth_connected == "yes"
-            ? "󰂱"
-            : bluetooth_status == "enabled"
-            ? "󰂯"
-            : "󰂲"
-            }
-          )
-        )
-        
-        (button
-          :class "qs-side-label blue"
+          :class "qs-side-label blue overlay-label"
           :hexpand true
           :onclick "kitty bluetui &"
-          
           (box
             :orientation "v"
             :halign "start"
-            
             (label
               :class "qs-label-main"
               :halign "start"
               :limit-width 12
               :text {
-              bluetooth_name != ""
-              ? bluetooth_name
-              : bluetooth_status == "enabled"
-              ? "Bluetooth"
-              : "Bluetooth Off"
+                bluetooth_name != ""
+                ? bluetooth_name
+                : bluetooth_status == "enabled"
+                ? "Bluetooth"
+                : "Bluetooth Off"
               }
             )
-            
             (label
               :class "qs-label-sub"
               :halign "start"
               :text {
-              bluetooth_name != ""
-              ? bluetooth_mac
-              : "Disconnected"
+                bluetooth_name != ""
+                ? bluetooth_mac
+                : "Disconnected"
               }
             )
           )
         )
+
+        (button
+          :class "qs-side-icon blue overlay-icon ${bluetooth_connected == 'yes' ? 'active' : ''}"
+          :halign "start"
+          :valign "center"
+          :onclick "~/.config/eww/scripts/bluetooth.sh toggle"
+          (label
+            :text {
+              bluetooth_connected == "yes"
+              ? "󰂱"
+              : bluetooth_status == "enabled"
+              ? "󰂯"
+              : "󰂲"
+            }
+          )
+        )
       )
-      
+
       (qs_button
         :label "Picker"
         :icon "󰈋"
         :class "color"
-      :onclick "hyprpicker -a &")
+        :onclick "hyprpicker -a &"
+      )
     )
   )
 )
@@ -257,11 +251,11 @@
     :orientation "h"
     :spacing 8
     :homogeneous true
-    
+
     (button :class "sys-btn" :onclick "~/.config/eww/scripts/power-menu.sh lock"     (label :text "󰌾"))
-    (button :class "sys-btn" :onclick "~/.config/eww/scripts/power-menu.sh logout"   (label :text "󰗽"))
-    (button :class "sys-btn" :onclick "~/.config/eww/scripts/power-menu.sh suspend"  (label :text "󰤄"))
-    (button :class "sys-btn" :onclick "~/.config/eww/scripts/power-menu.sh reboot"   (label :text "󰑓"))
+    (button :class "sys-btn" :onclick "~/.config/eww/scripts/power-menu.sh logout"    (label :text "󰗽"))
+    (button :class "sys-btn" :onclick "~/.config/eww/scripts/power-menu.sh suspend"   (label :text "󰤄"))
+    (button :class "sys-btn" :onclick "~/.config/eww/scripts/power-menu.sh reboot"    (label :text "󰑓"))
     (button :class "sys-btn danger" :onclick "~/.config/eww/scripts/power-menu.sh shutdown" (label :text ""))
   )
 )
@@ -272,38 +266,33 @@
     :class "dashboard-window"
     :orientation "v"
     :space-evenly false
-    
-    (box
-      :class "cover-image"
-      :hexpand true
-    )
-    
+
+    (box :class "cover-image" :hexpand true)
+
     (box
       :class "header-row"
       :orientation "h"
       :space-evenly false
-      
+
       (box :class "profile-pic")
-      
+
       (box :hexpand true)
-      
+
       (box
         :class "power-box"
         :orientation "h"
         :spacing 5
-        
+
         (button
           :class "power-btn psave ${power_profile == 'powersave' ? 'active' : ''}"
           :onclick "~/.config/eww/scripts/power-profile.sh set powersave"
-          (label :text "󰌪")
+          (label :text "󰾆")
         )
-        
         (button
           :class "power-btn bal ${power_profile == 'balanced' ? 'active' : ''}"
           :onclick "~/.config/eww/scripts/power-profile.sh set balanced"
-          (label :text "󰗑")
+          (label :text "󰾅")
         )
-        
         (button
           :class "power-btn perf ${power_profile == 'performance' ? 'active' : ''}"
           :onclick "~/.config/eww/scripts/power-profile.sh set throughput-performance"
@@ -311,40 +300,42 @@
         )
       )
     )
-    
+
     (box
       :class "user-box"
       :orientation "v"
       :halign "start"
       (label :class "user-name" :text user_fullname)
-      (label :halign "start" :class "user-host" :text {"@" + system_hostname})
+      (label :class "user-host" :halign "start" :text {"@" + system_hostname})
     )
-    
+
     (box
       :class "time-container"
       :halign "start"
       (label :class "time-text" :text current_time)
     )
-    
+
     (box
       :class "slider-group"
       :orientation "v"
-      
+
       (dashboard_slider
         :class "vol-slider"
         :icon {volume_muted == "yes" ? "󰖁" : "󰕾"}
         :onclick "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
         :value volume_value
-      :onchange "wpctl set-volume @DEFAULT_AUDIO_SINK@ {}%")
-      
+        :onchange "wpctl set-volume @DEFAULT_AUDIO_SINK@ {}%"
+      )
+
       (dashboard_slider
         :class "br-slider"
         :icon "󰃠"
         :onclick "niri msg action power-off-monitors"
         :value brightness_value
-      :onchange "~/.config/eww/scripts/brightness.sh set {}")
+        :onchange "~/.config/eww/scripts/brightness.sh set {}"
+      )
     )
-    
+
     (quick_settings)
     (system_actions)
   )
