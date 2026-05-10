@@ -33,7 +33,7 @@ makepkg -si
 
 ```bash
 paru -S fish \
-  nano btop fastfetch \
+  micro btop fastfetch \
   brightnessctl \
   cliphist \
   wl-clipboard \
