@@ -1,0 +1,373 @@
+@define-color bg #0f0f0f;
+@define-color bg-alt #181818;
+@define-color border #2a2a2a;
+
+@define-color fg-shine #e3e3e3;
+@define-color fg #d4d4d4;
+@define-color fg-dim #949494;
+
+@define-color accent #89b4fa;
+@define-color green #40a874;
+@define-color yellow #f9e2af;
+@define-color red #f38ba8;
+
+@define-color selection_bg #2a2a2a;
+@define-color blue #89b4fa;
+@define-color magenta #89b4fa;
+@define-color cyan #89b4fa;
+
+
+/* =========================
+   BASE
+========================= */
+
+window {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  text-shadow: none;
+  opacity: 1;
+  -gtk-icon-effect: none;
+}
+
+button {
+  background-image: none;
+  border: none;
+  box-shadow: none;
+  outline: none;
+
+  transition: all 200ms;
+}
+
+button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.dashboard-window {
+  background-color: alpha(@bg, 0.99);
+  color: @fg;
+  padding: 10px;
+  border-radius: 12px;
+
+  box-shadow:
+    0 8px 24px rgba(0,0,0,0.45),
+    0 2px 8px rgba(0,0,0,0.25);
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.cover-image {
+  min-width: 450px;
+  min-height: 150px;
+
+  background: url("/home/aris/Downloads/cover.webp") center/cover no-repeat;
+  border-radius: 8px;
+}
+
+.header-row {
+  margin: 10px 10px 0;
+}
+
+.profile-pic {
+  min-width: 105px;
+  min-height: 105px;
+
+  margin: -70px 12px 0 0;
+
+  background: url("/home/aris/Downloads/profile.webp") center/cover;
+  border-radius: 999px;
+  border: 4px solid @bg;
+}
+
+
+/* =========================
+   USER
+========================= */
+
+.user-box {
+  margin: 20px 12px 0;
+}
+
+.user-name {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.user-host {
+  font-size: 14px;
+  color: @fg-dim;
+}
+
+
+/* =========================
+   POWER PROFILE
+========================= */
+
+.power-box {
+  background-color: @bg-alt;
+  padding: 4px;
+  border-radius: 24px;
+}
+
+button.power-btn {
+  background-color: transparent;
+  color: @fg-dim;
+
+  padding: 6px 10px;
+  border-radius: 18px;
+}
+
+button.power-btn:hover {
+  background-color: rgba(255,255,255,0.05);
+  color: @fg;
+}
+
+button.power-btn.active.psave {
+  background-color: alpha(@green, .2);
+  color: @green;
+}
+
+button.power-btn.active.bal {
+  background-color: alpha(@accent, .2);
+  color: @accent;
+}
+
+button.power-btn.active.perf {
+  background-color: alpha(@red, .2);
+  color: @red;
+}
+
+
+/* =========================
+   TIME
+========================= */
+
+.time-container {
+  margin: 20px 12px 0;
+}
+
+.time-text {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+
+/* =========================
+   SLIDER
+========================= */
+
+.slider-group {
+  margin: 15px 0 0 12px;
+}
+
+.slider-icon {
+  font-size: 22px;
+  margin-right: 10px;
+}
+
+button.slider-icon-btn {
+  background-color: transparent;
+
+  padding: 0;
+  margin-right: 10px;
+
+  min-width: 0;
+  min-height: 0;
+}
+
+button.slider-icon-btn,
+button.slider-icon-btn:hover,
+button.slider-icon-btn:active,
+button.slider-icon-btn:focus,
+button.slider-icon-btn:checked,
+button.slider-icon-btn:backdrop {
+  background-color: transparent;
+}
+
+button.slider-icon-btn label,
+button.slider-icon-btn:hover label,
+button.slider-icon-btn:active label,
+button.slider-icon-btn:focus label {
+  color: @fg;
+}
+
+scale.slider-bar trough {
+  min-width: 100px;
+  min-height: 18px;
+
+  background-color: @bg-alt;
+  border-radius: 50px;
+}
+
+scale.slider-bar highlight {
+  background-color: @accent;
+  border-radius: 50px 0 0 50px;
+}
+
+scale.slider-bar slider {
+  all: unset;
+
+  min-width: 4px;
+  min-height: 28px;
+
+  margin: -5px 0;
+
+  background-color: @accent;
+
+  border-left: 5px solid @bg;
+  border-right: 5px solid @bg;
+}
+
+
+/* =========================
+   QUICK SETTINGS
+========================= */
+
+.qs-container {
+  margin-top: 20px;
+}
+
+button.qs-btn,
+button.qs-side-icon,
+button.qs-side-label {
+  background-color: @bg-alt;
+  color: @fg;
+}
+
+button.qs-btn:hover,
+button.qs-side-icon:hover,
+button.qs-side-label:hover {
+  background-color: alpha(@accent, .15);
+  color: @fg-shine;
+}
+
+button.qs-btn:active,
+button.qs-side-icon:active,
+button.qs-side-label:active,
+
+button.qs-side-icon.active {
+  background-color: @accent;
+  color: @bg;
+}
+
+button.qs-side-icon.active label {
+  color: @bg;
+}
+
+
+/* normal */
+
+button.qs-btn {
+  padding: 14px 18px;
+  border-radius: 20px;
+}
+
+
+/* split */
+
+button.qs-side-icon {
+  padding: 14px 20px;
+  margin-right: 2px;
+
+  border-radius: 20px 0 0 20px;
+  font-size: 18px;
+}
+
+button.qs-side-label {
+  padding: 14px 18px;
+
+  border-radius: 0 20px 20px 0;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+
+/* active hover */
+
+button.qs-side-icon.active:hover {
+  background-color: alpha(@accent, .8);
+}
+
+
+/* labels */
+
+.qs-label {
+  margin-left: 10px;
+
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.qs-label-main {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.qs-label-sub {
+  font-size: 10px;
+  opacity: .8;
+}
+
+
+/* icons */
+
+.qs-icon {
+  font-size: 18px;
+}
+
+.qs-icon.wifi { color: @accent; }
+.qs-icon.disk { color: @yellow; }
+.qs-icon.blue { color: @blue; }
+.qs-icon.color { color: @magenta; }
+
+
+/* =========================
+   SYSTEM ACTIONS
+========================= */
+
+.system-actions {
+  margin-top: 30px;
+}
+
+button.sys-btn {
+  background-color: @bg-alt;
+  color: @fg-dim;
+
+  padding: 14px 0;
+  border-radius: 8px;
+
+  font-size: 18px;
+}
+
+button.sys-btn:hover {
+  background-color: alpha(@accent, .15);
+  color: @fg-shine;
+}
+
+button.sys-btn:active {
+  background-color: @accent;
+  color: @bg;
+}
+
+
+/* danger */
+
+button.sys-btn.danger:hover {
+  background-color: alpha(@red, .15);
+  color: @red;
+}
+
+button.sys-btn.danger:active {
+  background-color: @red;
+  color: @bg;
+}
