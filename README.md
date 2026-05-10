@@ -1,4 +1,4 @@
-# Arch + Niri + Waybar
+# Arch + Niri + Waybar + EWW
 ![screenshot](https://raw.githubusercontent.com/sira313/dotfiles-niri/refs/heads/main/Screenshots/3.png)
 ![screenshot](https://raw.githubusercontent.com/sira313/dotfiles-niri/refs/heads/main/Screenshots/1.png)
 ![screenshot](https://raw.githubusercontent.com/sira313/dotfiles-niri/refs/heads/main/Screenshots/2.png)
