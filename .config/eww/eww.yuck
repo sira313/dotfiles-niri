@@ -2,6 +2,14 @@
   :interval "500ms"
 "~/.config/eww/scripts/power-profile.sh get")
 
+(defpoll current_clock
+  :interval "1s"
+"date '+%H:%M'")
+
+(defpoll current_date
+  :interval "60s"
+"date '+%a, %d %b %Y'")
+
 (defpoll user_fullname
   :interval "30s"
 "~/.config/eww/scripts/user-info.sh fullname")
@@ -161,10 +169,10 @@
         )
         
         (button
-          :class "qs-side-icon wifi overlay-icon ${wifi_status == 'enabled' ? 'active' : ''}"
+          :class "qs-side-icon wifi overlay-icon ${wifi_ssid != '' ? 'active' : ''}"
           :halign "start"
           :valign "center"
-          :onclick "nmcli radio wifi $(nmcli radio wifi | grep -q enabled && echo off || echo on)"
+          :onclick "~/.config/eww/scripts/wifi.sh toggle" ;; Panggil script wrapper
           (label
             :style "margin-right: 6px;"
             :text {wifi_status == "enabled" ? "󰤨" : "󰤭"}
@@ -267,7 +275,28 @@
     :orientation "v"
     :space-evenly false
     
-    (box :class "cover-image" :hexpand true)
+    (overlay
+      (box
+        :class "cover-image"
+        :hexpand true
+      )
+      
+      (box
+        :class "cover-time-text"
+        :orientation "v"
+        :spacing 0
+        
+        (label
+          :class "cover-clock"
+          :text current_clock
+        )
+        
+        (label
+          :class "cover-date"
+          :text current_date
+        )
+      )
+    )
     
     (box
       :class "header-row"
@@ -307,12 +336,6 @@
       :halign "start"
       (label :class "user-name" :text user_fullname)
       (label :class "user-host" :halign "start" :text {"@" + system_hostname})
-    )
-    
-    (box
-      :class "time-container"
-      :halign "start"
-      (label :class "time-text" :text current_time)
     )
     
     (box

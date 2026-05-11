@@ -40,8 +40,12 @@ case "$1" in
   toggle)
     if bluetoothctl show | grep -q "Powered: yes"; then
       bluetoothctl power off >/dev/null
+      # Paksa update variabel eww secara manual
+      eww update bluetooth_status="disabled"
+      eww update bluetooth_connected="no"
     else
       bluetoothctl power on >/dev/null
+      eww update bluetooth_status="enabled"
     fi
   ;;
   

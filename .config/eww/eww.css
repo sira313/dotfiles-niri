@@ -62,7 +62,7 @@ button:focus {
 .cover-image {
   min-width: 450px;
   min-height: 150px;
-  background: url("/home/aris/Downloads/cover.webp") center/cover no-repeat;
+  background: url("/home/aris/Pictures/Profiles/cover.webp") center/cover no-repeat;
   border-radius: 8px;
 }
 
@@ -74,7 +74,7 @@ button:focus {
   min-width: 105px;
   min-height: 105px;
   margin: -70px 12px 0 0;
-  background: url("/home/aris/Downloads/profile.webp") center/cover;
+  background: url("/home/aris/Pictures/Profiles/profile.webp") center/cover;
   border-radius: 999px;
   border: 4px solid @bg;
 }
@@ -133,15 +133,38 @@ button.power-btn.active.perf {
 }
 
 
-/* TIME */
+/* COVER TIME */
 
-.time-container {
-  margin: 20px 12px 0;
+.cover-time-overlay {
+  padding: 0;
 }
 
-.time-text {
-  font-size: 15px;
-  font-weight: 500;
+.cover-time-text {
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  box-shadow: none;
+}
+
+.cover-clock,
+.cover-date {
+  padding: 0;
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+}
+
+.cover-clock {
+  color: @fg;
+  margin-top: 20px;
+  font-size: 80px;
+  font-weight: 700;
+}
+
+.cover-date {
+  color: @fg;
+  margin-top: -130px;
+  font-size: 20px;
+  font-weight: 900;
 }
 
 
