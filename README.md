@@ -66,6 +66,11 @@ paru -S fish \
 
 ## Configuration
 
+### Use Fish
+```
+chsh -s /usr/bin/fish
+```
+
 Copy all directories and files to the exact same paths as in this repo.
 
 Don't forget to install **Starship** prompt:
