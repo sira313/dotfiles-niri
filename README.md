@@ -48,7 +48,7 @@ paru -S fish \
   gst-plugins-ugly \
   gst-libav \
   ffmpegthumbnailer \
-  samba \
+  samba gvfs-smb \
   freerdp \
   xwayland-satellite \
   podman-compose \
