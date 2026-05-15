@@ -1,13 +1,13 @@
 # Arch + Niri + Waybar + EWW
 <p align="center">
-  <img src="https://raw.githubusercontent.com/sira313/dotfiles-niri/refs/heads/main/Screenshots/3.png" width="45%" />
-  <img src="https://raw.githubusercontent.com/sira313/dotfiles-niri/refs/heads/main/Screenshots/1.png" width="45%" />
-  <img src="https://raw.githubusercontent.com/sira313/dotfiles-niri/refs/heads/main/Screenshots/2.png" width="45%" />
-  <img src="https://raw.githubusercontent.com/sira313/dotfiles-niri/refs/heads/main/Screenshots/4.png" width="45%" />
-  <img src="https://raw.githubusercontent.com/sira313/dotfiles-niri/refs/heads/main/Screenshots/5.png" width="45%" />
-  <img src="https://raw.githubusercontent.com/sira313/dotfiles-niri/refs/heads/main/Screenshots/6.png" width="45%" />
-  <img src="https://raw.githubusercontent.com/sira313/dotfiles-niri/refs/heads/main/Screenshots/7.png" width="45%" />
-  <img src="https://raw.githubusercontent.com/sira313/dotfiles-niri/refs/heads/main/Screenshots/8.png" width="45%" />
+  <img src="https://raw.githubusercontent.com/sira313/dotfiles-niri/refs/heads/main/Screenshots/3.webp" width="45%" />
+  <img src="https://raw.githubusercontent.com/sira313/dotfiles-niri/refs/heads/main/Screenshots/1.webp" width="45%" />
+  <img src="https://raw.githubusercontent.com/sira313/dotfiles-niri/refs/heads/main/Screenshots/2.webp" width="45%" />
+  <img src="https://raw.githubusercontent.com/sira313/dotfiles-niri/refs/heads/main/Screenshots/4.webp" width="45%" />
+  <img src="https://raw.githubusercontent.com/sira313/dotfiles-niri/refs/heads/main/Screenshots/5.webp" width="45%" />
+  <img src="https://raw.githubusercontent.com/sira313/dotfiles-niri/refs/heads/main/Screenshots/6.webp" width="45%" />
+  <img src="https://raw.githubusercontent.com/sira313/dotfiles-niri/refs/heads/main/Screenshots/7.webp" width="45%" />
+  <img src="https://raw.githubusercontent.com/sira313/dotfiles-niri/refs/heads/main/Screenshots/8.webp" width="45%" />
 </p>
 
 After install arch minimal with archinstall. Using systemd-boot + UKI, btrfs, tuned, and ufw
