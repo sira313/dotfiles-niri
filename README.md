@@ -70,8 +70,17 @@ paru -S fish \
 ```
 chsh -s /usr/bin/fish
 ```
-
+#### Manual Config
 Copy all directories and files to the exact same paths as in this repo.
+
+#### Sync Config
+We can create symlink this dots to .config
+
+> This will replace your current setup to the symlink
+
+```
+./sync
+```
 
 Don't forget to install **Starship** prompt:
 
