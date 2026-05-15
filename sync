@@ -1,48 +1,68 @@
 #!/bin/bash
 
 # Define paths
-DOTFILES_DIR=$(pwd)
+# Using readlink to get the absolute path even if the script is called from elsewhere
+DOTFILES_DIR=$(dirname "$(readlink -f "$0")")
 CONFIG_DIR="$HOME/.config"
 APPS_DIR="$HOME/.local/share/applications"
 
-# List of config directories
-folders=(
-    "assets" "btop" "fastfetch" "fish" "fuzzel" 
-    "kitty" "mako" "micro" "niri" "ranger" 
-    "swaylock" "totem" "waybar"
+# List of folders to ignore during the symlinking process
+exclude=(
+    "eww"
 )
 
-# List of individual config files
-files=(
-    "starship.toml"
-    # "another_config.conf" (Add more here)
-)
+# Function to check if an item is in the exclude list
+is_excluded() {
+    local e
+    for e in "${exclude[@]}"; do
+        [[ "$e" == "$1" ]] && return 0
+    done
+    return 1
+}
 
-echo "🔗 Symlinking dotfiles..."
+echo "🔗 Starting symlink installation..."
 
-# Link directories
-for folder in "${folders[@]}"; do
-    if [ -d "$DOTFILES_DIR/.config/$folder" ]; then
-        rm -rf "$CONFIG_DIR/$folder"
-        ln -s "$DOTFILES_DIR/.config/$folder" "$CONFIG_DIR/$folder"
-        echo "✅ Linked directory: $folder"
+# Create config directory if it doesn't exist
+mkdir -p "$CONFIG_DIR"
+
+# Process directories inside .config
+# Using find to get only directories (maxdepth 1) to avoid recursive loops
+for folder_path in "$DOTFILES_DIR/.config"/*/; do
+    # Remove trailing slash for comparison
+    folder_name=$(basename "$folder_path")
+
+    if is_excluded "$folder_name"; then
+        echo "⏩ Skipped (Excluded): $folder_name"
+        continue
+    fi
+
+    # ln -sf: 's' for symbolic, 'f' to force (overwrite existing symlinks/files)
+    # This acts as an installer/updater without needing 'rm'
+    ln -sfn "$folder_path" "$CONFIG_DIR/$folder_name"
+    echo "✅ Linked directory: $folder_name"
+done
+
+# Process individual files inside .config (e.g., starship.toml)
+for file_path in "$DOTFILES_DIR/.config"/*; do
+    if [ -f "$file_path" ]; then
+        file_name=$(basename "$file_path")
+        
+        if is_excluded "$file_name"; then
+            continue
+        fi
+
+        ln -sf "$file_path" "$CONFIG_DIR/$file_name"
+        echo "✅ Linked file: $file_name"
     fi
 done
 
-# Link individual files (Universal)
-for file in "${files[@]}"; do
-    if [ -f "$DOTFILES_DIR/.config/$file" ]; then
-        rm -f "$CONFIG_DIR/$file"
-        ln -s "$DOTFILES_DIR/.config/$file" "$CONFIG_DIR/$file"
-        echo "✅ Linked file: $file"
-    fi
-done
-
-# Link desktop applications
+# Link desktop applications (Desktop Entries)
 if [ -d "$DOTFILES_DIR/.local/share/applications" ]; then
+    echo "🔗 Linking desktop entries..."
     mkdir -p "$APPS_DIR"
+    # Overwrite existing desktop entries in the local share
     ln -sf "$DOTFILES_DIR/.local/share/applications/"* "$APPS_DIR/"
-    echo "✅ Linked: desktop entries"
+    echo "✅ Done with desktop entries"
 fi
 
-echo "🚀 Done!"
+echo "🚀 Installation complete! Your minimal setup is ready."
