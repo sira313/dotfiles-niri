@@ -5,11 +5,17 @@ DOTFILES_DIR=$(pwd)
 CONFIG_DIR="$HOME/.config"
 APPS_DIR="$HOME/.local/share/applications"
 
-# List of config folders to link
+# List of config directories
 folders=(
     "assets" "btop" "fastfetch" "fish" "fuzzel" 
     "kitty" "mako" "micro" "niri" "ranger" 
     "swaylock" "totem" "waybar"
+)
+
+# List of individual config files
+files=(
+    "starship.toml"
+    # "another_config.conf" (Add more here)
 )
 
 echo "🔗 Symlinking dotfiles..."
@@ -23,12 +29,14 @@ for folder in "${folders[@]}"; do
     fi
 done
 
-# Link starship.toml (file)
-if [ -f "$DOTFILES_DIR/.config/starship.toml" ]; then
-    rm -f "$CONFIG_DIR/starship.toml"
-    ln -s "$DOTFILES_DIR/.config/starship.toml" "$CONFIG_DIR/starship.toml"
-    echo "✅ Linked: starship.toml"
-fi
+# Link individual files (Universal)
+for file in "${files[@]}"; do
+    if [ -f "$DOTFILES_DIR/.config/$file" ]; then
+        rm -f "$CONFIG_DIR/$file"
+        ln -s "$DOTFILES_DIR/.config/$file" "$CONFIG_DIR/$file"
+        echo "✅ Linked file: $file"
+    fi
+done
 
 # Link desktop applications
 if [ -d "$DOTFILES_DIR/.local/share/applications" ]; then
