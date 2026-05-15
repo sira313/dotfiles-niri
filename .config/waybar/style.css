@@ -250,8 +250,8 @@ window#waybar {
 #clock {
   padding-left: 0;
   color: @fg-shine;
-  font-family: "Audiowide", "JetBrains Mono"; /* Urutan font cadangan */
-  font-size: 14px;
+  font-family: "digital-7", "JetBrains Mono"; /* Urutan font cadangan */
+  font-size: 16px;
   font-weight: bold;
 }
 
