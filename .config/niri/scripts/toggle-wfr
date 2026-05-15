@@ -11,13 +11,13 @@ fi
 
 # -------- DIALOG (Fuzzel) --------
 fuzzel_menu() {
-    echo -e "$1" | fuzzel --dmenu --prompt "$2: " --lines "$3" --width 20
+    echo -e "$1" | fuzzel --dmenu --prompt "$2 " --lines "$3" --width 20
 }
 
-mode=$(fuzzel_menu "Fullscreen\nRegion" "Mode" 2)
+mode=$(fuzzel_menu "Fullscreen\nRegion" "󰧨" 2)
 [ -z "$mode" ] && exit 1
 
-audio_choice=$(fuzzel_menu "System Sound\nMicrophone\nBluetooth\nNo Audio" "Audio" 4)
+audio_choice=$(fuzzel_menu "System Sound\nMicrophone\nBluetooth\nNo Audio" "󱀞" 4)
 [ -z "$audio_choice" ] && exit 1
 
 # -------- OUTPUT --------

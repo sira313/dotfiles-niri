@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# Define paths
+DOTFILES_DIR=$(pwd)
+CONFIG_DIR="$HOME/.config"
+APPS_DIR="$HOME/.local/share/applications"
+
+# List of config folders to link
+folders=(
+    "assets" "btop" "fastfetch" "fish" "fuzzel" 
+    "kitty" "mako" "micro" "niri" "ranger" 
+    "swaylock" "totem" "waybar"
+)
+
+echo "🔗 Symlinking dotfiles..."
+
+# Link directories
+for folder in "${folders[@]}"; do
+    if [ -d "$DOTFILES_DIR/.config/$folder" ]; then
+        rm -rf "$CONFIG_DIR/$folder"
+        ln -s "$DOTFILES_DIR/.config/$folder" "$CONFIG_DIR/$folder"
+        echo "✅ Linked directory: $folder"
+    fi
+done
+
+# Link starship.toml (file)
+if [ -f "$DOTFILES_DIR/.config/starship.toml" ]; then
+    rm -f "$CONFIG_DIR/starship.toml"
+    ln -s "$DOTFILES_DIR/.config/starship.toml" "$CONFIG_DIR/starship.toml"
+    echo "✅ Linked: starship.toml"
+fi
+
+# Link desktop applications
+if [ -d "$DOTFILES_DIR/.local/share/applications" ]; then
+    mkdir -p "$APPS_DIR"
+    ln -sf "$DOTFILES_DIR/.local/share/applications/"* "$APPS_DIR/"
+    echo "✅ Linked: desktop entries"
+fi
+
+echo "🚀 Done!"

@@ -71,6 +71,11 @@ window#waybar {
   padding: 0 5px;
 }
 
+#custom-arch {
+  color: @fg;
+  padding: 0 5px
+}
+
 /* MPRIS */
 #mpris:hover {
   color: @accent;
@@ -245,6 +250,9 @@ window#waybar {
 #clock {
   padding-left: 0;
   color: @fg-shine;
+  font-family: "Audiowide", "JetBrains Mono"; /* Urutan font cadangan */
+  font-size: 14px;
+  font-weight: bold;
 }
 
 #clock:hover                  { color: @accent; }

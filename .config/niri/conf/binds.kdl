@@ -48,7 +48,7 @@ binds {
     // ─────────────────────────────
     // SCREEN RECORDING
     // ─────────────────────────────
-    Mod+Alt+R hotkey-overlay-title="Toggle Start/Stop Recording" { 
+    Mod+S hotkey-overlay-title="Toggle Start/Stop Recording" { 
         spawn "~/.config/niri/scripts/toggle-wfr"
     }
 
