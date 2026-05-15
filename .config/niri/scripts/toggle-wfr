@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+
+pid=$(pgrep -x wf-recorder)
+
+# -------- STOP --------
+if [ -n "$pid" ]; then
+    kill -INT "$pid"
+    notify-send -a "WFR" "Screen Recorder" "Recording stopped"
+    exit 0
+fi
+
+# -------- DIALOG (Fuzzel) --------
+fuzzel_menu() {
+    echo -e "$1" | fuzzel --dmenu --prompt "$2: " --lines "$3" --width 20
+}
+
+mode=$(fuzzel_menu "Fullscreen\nRegion" "Mode" 2)
+[ -z "$mode" ] && exit 1
+
+audio_choice=$(fuzzel_menu "System Sound\nMicrophone\nBluetooth\nNo Audio" "Audio" 4)
+[ -z "$audio_choice" ] && exit 1
+
+# -------- OUTPUT --------
+save_dir="$HOME/Videos/ScreenRecord"
+mkdir -p "$save_dir"
+outfile="$save_dir/Screencast_$(date +%Y%m%d_%H%M%S).mp4"
+
+# -------- REGION / FULLSCREEN --------
+output_args=()
+
+case "$mode" in
+    "Region")
+        region=$(slurp 2>/dev/null | tr -d '\n')
+        [ -z "$region" ] && exit 1
+        output_args=(-g "$region")
+    ;;
+    "Fullscreen")
+        output_name=$(niri msg --json focused-output | jq -r .name)
+        output_args=(-o "$output_name")
+    ;;
+esac
+
+# -------- AUDIO --------
+audio_args=()
+case "$audio_choice" in
+    "System Sound")
+        audio_source=$(pactl list short sources | awk '/monitor/ {print $2; exit}')
+        [ -n "$audio_source" ] && audio_args=(--audio="$audio_source")
+    ;;
+    "Microphone")
+        audio_source=$(pactl get-default-source)
+        [ -n "$audio_source" ] && audio_args=(--audio="$audio_source")
+    ;;
+    "Bluetooth")
+        audio_source=$(pactl list short sources | grep "bluez" | awk '{print $2}' | head -n 1)
+        if [ -z "$audio_source" ]; then
+            notify-send "Error" "Bluetooth device not found!"
+            exit 1
+        fi
+        audio_args=(--audio="$audio_source")
+    ;;
+esac
+
+# -------- RECORD --------
+wf-recorder "${output_args[@]}" "${audio_args[@]}" -f "$outfile" &
+
+notify-send -a "WFR" "Screen Recorder" "Recording started\nMode: $mode\nAudio: $audio_choice"

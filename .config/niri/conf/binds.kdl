@@ -7,7 +7,6 @@ binds {
     Mod+Shift+Slash hotkey-overlay-title="Cheatsheet" {
         spawn "~/.config/niri/scripts/cheatsheet"
     }
-    Mod+Shift+Space { spawn "eww" "open" "--toggle" "dashboard"; }
 
     Mod+Escape allow-inhibiting=false hotkey-overlay-title="Toggle Inhibitors" { toggle-keyboard-shortcuts-inhibit; }
 
@@ -23,6 +22,8 @@ binds {
     Mod+Shift+Period hotkey-overlay-title="Show Emoji" {
         spawn "rofimoji" "--selector" "fuzzel" "--action" "type" "--prompt" " "
     }
+
+    Mod+B hotkey-overlay-title="Toggle Waybar" { spawn-sh "killall -SIGUSR1 waybar"; }
 
     // ─────────────────────────────
     // LAUNCHERS
@@ -47,11 +48,8 @@ binds {
     // ─────────────────────────────
     // SCREEN RECORDING
     // ─────────────────────────────
-    Mod+Alt+R hotkey-overlay-title="Start Recording" { 
-        spawn "sh" "-c" "notify-send 'Screen Recorder' 'Recording System Audio' -i media-record && mkdir -p ~/Videos/ScreenRecord && wf-recorder --audio=alsa_output.pci-0000_06_00.6.analog-stereo.monitor -f ~/Videos/ScreenRecord/recording_$(date +%Y-%m-%d_%H-%M-%S).mp4"
-    }
-    Mod+Alt+S hotkey-overlay-title="Stop Recording" { 
-        spawn "sh" "-c" "killall -s SIGINT wf-recorder && notify-send 'Screen Recorder' 'Recording Saved' -i task-complete"
+    Mod+Alt+R hotkey-overlay-title="Toggle Start/Stop Recording" { 
+        spawn "~/.config/niri/scripts/toggle-wfr"
     }
 
     // ─────────────────────────────

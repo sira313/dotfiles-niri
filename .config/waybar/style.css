@@ -196,8 +196,14 @@ window#waybar {
   padding: 0 5px;
 }
 
+/* tray */
 #tray > widget > button.passive {
     -gtk-icon-effect: dim;
+}
+
+#custom-screencast-status {
+  color: @red;
+  padding: 0 5px;
 }
 
 #tray > widget > button.needs-attention {

@@ -42,7 +42,7 @@ paru -S fish \
   kitty nautilus \
   totem \
   loupe \
-  wf-recorder \
+  wf-recorder slurp \
   gst-plugins-good \
   gst-plugins-bad \
   gst-plugins-ugly \
@@ -197,6 +197,7 @@ To manage the Windows VM, press `Meta + Space` and search:
 | `Meta + Space` | Open app launcher |
 | `Meta + Shift + /` | View shortcut list |
 | `Meta + X` | Open power menu |
-| `Meta + Alt + R` | Record full screen |
-| `Meta + Alt + S` | Stop screen recorder |
+| `Meta + Alt + R` | Toggle Record screen |
 | `Meta + Shift + Space` | Open eww dashbord |
+
+> I no longer use eww dashboard but i'll keep it here.

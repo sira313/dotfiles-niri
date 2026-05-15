@@ -5,3 +5,8 @@
     transform "normal"
     position x=1280 y=0
 }
+
+output "HDMI-A-1" {
+    scale 1.13
+    position x=1920 y=0
+}

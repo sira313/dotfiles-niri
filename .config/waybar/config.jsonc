@@ -30,6 +30,7 @@
 
   "modules-right": [
     "tray",
+    "custom/screencast-status",
     "custom/power-profile",
     "pulseaudio",
     "bluetooth",
@@ -117,6 +118,20 @@
       "icon-size": 12,
       "spacing": 10
   },
+
+  // ── Record ────────────────────────────────────────────────
+  "custom/screencast-status": {
+		"exec": "~/.config/waybar/scripts/status-wfr.sh",
+		"interval": 2,
+		"return-type": "json",
+		"format": "{icon}",
+		"format-icons": {
+			"recording": "",
+			// "idle": "",
+		},
+		"tooltip-format": "Recording screen. Click to stop.",
+		"on-click": "~/.config/niri/scripts/toggle-wfr",
+	},
 
   // ── Power Profile ─────────────────────────────────────────
   "custom/power-profile": {
