@@ -1,19 +1,16 @@
 # Arch + Niri + Waybar + EWW
-![screenshot](https://raw.githubusercontent.com/sira313/dotfiles-niri/refs/heads/main/Screenshots/3.png)
-![screenshot](https://raw.githubusercontent.com/sira313/dotfiles-niri/refs/heads/main/Screenshots/1.png)
-![screenshot](https://raw.githubusercontent.com/sira313/dotfiles-niri/refs/heads/main/Screenshots/2.png)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/sira313/dotfiles-niri/refs/heads/main/Screenshots/3.png" width="45%" />
+  <img src="https://raw.githubusercontent.com/sira313/dotfiles-niri/refs/heads/main/Screenshots/1.png" width="45%" />
+  <img src="https://raw.githubusercontent.com/sira313/dotfiles-niri/refs/heads/main/Screenshots/2.png" width="45%" />
+  <img src="https://raw.githubusercontent.com/sira313/dotfiles-niri/refs/heads/main/Screenshots/4.png" width="45%" />
+  <img src="https://raw.githubusercontent.com/sira313/dotfiles-niri/refs/heads/main/Screenshots/5.png" width="45%" />
+  <img src="https://raw.githubusercontent.com/sira313/dotfiles-niri/refs/heads/main/Screenshots/6.png" width="45%" />
+  <img src="https://raw.githubusercontent.com/sira313/dotfiles-niri/refs/heads/main/Screenshots/7.png" width="45%" />
+  <img src="https://raw.githubusercontent.com/sira313/dotfiles-niri/refs/heads/main/Screenshots/8.png" width="45%" />
+</p>
+
 After install arch minimal with archinstall. Using systemd-boot + UKI, btrfs, tuned, and ufw
-## Table of Contents
-- [Setup Home Directory](#setup-home-directory)
-- [Install Paru](#install-paru)
-- [Install Prerequisites](#install-prerequisites)
-- [Configuration](#configuration)
-- [Btrfs + Snapper](#btrfs--snapper)
-- [Tips](#tips)
-  - [Xorg-based Apps](#xorg-based-apps)
-  - [Samba](#samba)
-  - [Windows VM](#windows-vm)
-- [Keyboard Shortcuts](#keyboard-shortcuts)
 
 ## Setup Home Directory
 
@@ -70,10 +67,11 @@ paru -S fish \
 ```
 chsh -s /usr/bin/fish
 ```
-#### Manual Config
+### Config Installation
+#### Manual
 Copy all directories and files to the exact same paths as in this repo.
 
-#### Sync Config
+#### Sync
 We can create symlink this dots to .config
 
 > This will replace your current setup to the symlink
@@ -82,6 +80,7 @@ We can create symlink this dots to .config
 ./sync
 ```
 
+### I use Starship
 Don't forget to install **Starship** prompt:
 
 ```bash
