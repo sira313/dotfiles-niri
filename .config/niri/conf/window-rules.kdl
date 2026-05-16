@@ -33,3 +33,8 @@ window-rule {
     match is-floating=true
     shadow { on; }
 }
+
+window-rule {
+    match app-id=r"^google-chrome$" title=r"^Google Chrome$"
+    open-floating true
+}
