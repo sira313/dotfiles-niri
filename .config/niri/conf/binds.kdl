@@ -20,7 +20,7 @@ binds {
     }
     
     Mod+Shift+Period hotkey-overlay-title="Show Emoji" {
-        spawn "rofimoji" "--selector" "fuzzel" "--action" "type" "--prompt" " "
+        spawn-sh "$HOME/.config/niri/scripts/emoji sink";
     }
 
     Mod+B hotkey-overlay-title="Toggle Waybar" { spawn-sh "killall -SIGUSR1 waybar"; }

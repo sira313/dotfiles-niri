@@ -1,0 +1,11 @@
+#!/usr/bin/env fish
+
+# Jalankan rofimoji dengan action copy agar emoji langsung masuk ke clipboard (wl-copy)
+# Kita gunakan fuzzel sebagai selector-nya
+rofimoji --selector fuzzel --action copy --prompt "  "
+
+# Berikan jeda sangat singkat agar sistem selesai memproses clipboard
+sleep 0.1
+
+# Simulasikan tekanan tombol Ctrl + V menggunakan wtype untuk langsung menempelkannya
+wtype -M ctrl -k v -m ctrl
