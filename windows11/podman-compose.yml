@@ -1,0 +1,25 @@
+services:
+  windows:
+    image: docker.io/dockurr/windows
+    container_name: windows11
+    environment:
+      USERNAME: "aris"
+      PASSWORD: "aris123"
+      LANGUAGE: "English"
+      REGION: "id-ID"
+      KEYBOARD: "en-US"
+    devices:
+      - /dev/kvm
+      - /dev/net/tun
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - "8006:8006"
+      - "3389:3389/tcp"
+      - "3389:3389/udp"
+    volumes:
+      - /home/aris/Documents/windows11/windows:/storage
+      - /home/aris/Documents/iso/win11.iso:/boot.iso
+      - /home/aris/Public:/shared
+    restart: on-failure
+    stop_grace_period: 2m

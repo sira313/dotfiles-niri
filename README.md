@@ -205,7 +205,7 @@ To manage the Windows VM, press `Meta + Space` and search:
 | `Meta + Space` | Open app launcher |
 | `Meta + Shift + /` | View shortcut list |
 | `Meta + X` | Open power menu |
-| `Meta + Alt + R` | Toggle Record screen |
+| `Meta + S` | Toggle Record screen |
 | `Meta + Shift + Space` | Open eww dashbord |
 
 > I no longer use eww dashboard but i'll keep it here.
