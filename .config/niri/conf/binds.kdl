@@ -8,6 +8,8 @@ binds {
         spawn "~/.config/niri/scripts/cheatsheet"
     }
 
+    "XF86Favorites" { spawn "env" "GDK_BACKEND=wayland" "nautilus" "--new-window" "starred:///"; }
+    "XF86Tools" { spawn "fish" "-c" "code ~/Documents/Projects/dotfiles-niri"; }
     Mod+Escape allow-inhibiting=false hotkey-overlay-title="Toggle Inhibitors" { toggle-keyboard-shortcuts-inhibit; }
 
     Mod+Shift+E hotkey-overlay-title="Quit Niri" { quit; }
