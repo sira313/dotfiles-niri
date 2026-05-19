@@ -135,6 +135,19 @@ To run Xorg-based apps under Wayland, install:
 sudo pacman -S xwayland-satellite
 ```
 
+To run Xorg-based apps under Wayland that need to be root:
+```bash
+paru -S xorg-xhost
+```
+Then
+```bash
+xhost +si:localuser:root
+```
+Make it automatic in niri auto start
+```kdl
+spawn-at-startup "xhost" "+si:localuser:root"
+```
+
 ### Samba
 
 Edit the Samba config:
