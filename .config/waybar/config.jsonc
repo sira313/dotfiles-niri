@@ -12,6 +12,7 @@
   "margin-top": 5,
   "margin-left": 5,
   "margin-right": 5,
+  
   // ── Layout ────────────────────────────────────────────────
   "modules-left": [
     "custom/arch",
@@ -26,15 +27,16 @@
   ],
   "modules-right": [
     "tray",
-    "idle_inhibitor",
     "custom/screencast-status",
     "custom/power-profile",
     "pulseaudio",
     "bluetooth",
     "network",
     "battery",
+    "idle_inhibitor",
     "clock"
   ],
+
   // ╔══════════════════════════════════════════════════════════╗
   // ║  LEFT                                                    ║
   // ╚══════════════════════════════════════════════════════════╝
@@ -95,6 +97,7 @@
       "default": "○"
     }
   },
+
   // ╔══════════════════════════════════════════════════════════╗
   // ║  CENTER                                                  ║
   // ╚══════════════════════════════════════════════════════════╝
@@ -104,6 +107,7 @@
     "tooltip": false,
     "on-click": "fuzzel --no-icons"
   },
+  
   // ╔══════════════════════════════════════════════════════════╗
   // ║  RIGHT                                                   ║
   // ╚══════════════════════════════════════════════════════════╝
@@ -111,14 +115,6 @@
   "tray": {
     "icon-size": 12,
     "spacing": 10
-  },
-  // Inhibitor
-  "idle_inhibitor": {
-    "format": "{icon}",
-    "format-icons": {
-      "activated": "󱎴",
-      "deactivated": "󰍹",
-    },
   },
   // ── Record ────────────────────────────────────────────────
   "custom/screencast-status": {
@@ -215,6 +211,14 @@
       "󰁹"
     ],
     "tooltip-format": "{timeTo}\n{power}W"
+  },
+  // Inhibitor
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "󱎴",
+      "deactivated": "󰍹",
+    },
   },
   // ── Clock ─────────────────────────────────────────────────
   "clock": {

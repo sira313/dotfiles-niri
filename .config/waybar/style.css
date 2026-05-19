@@ -73,7 +73,8 @@ window#waybar {
 
 #custom-arch {
   color: @fg;
-  padding: 0 5px
+  padding: 0 5px;
+  font-size: 16px;
 }
 
 /* MPRIS */
@@ -207,24 +208,6 @@ window#waybar {
     -gtk-icon-effect: dim;
 }
 
-/* Idle Inhibitor */
-#idle_inhibitor:hover {
-  color: @accent;
-}
-
-#idle_inhibitor.activated {
-  color: @fg-shine;
-}
-
-#custom-screencast-status {
-  color: @red;
-  padding: 0 5px;
-}
-
-#tray > widget > button.needs-attention {
-    color: @red;
-}
-
 /* Power profile */
 #custom-power-profile         { color: @yellow; }
 #custom-power-profile:hover   { color: @accent; }
@@ -244,6 +227,9 @@ window#waybar {
 #network.disconnected         { color: @red;    }
 
 /* Battery */
+#battery {
+  padding-right: 0;
+}
 #battery.charging,
 #battery.plugged                 { color: @accent; }
 #battery.warning:not(.charging)  { color: @yellow; }
@@ -256,11 +242,31 @@ window#waybar {
   to { opacity: 0.4; }
 }
 
+/* Idle Inhibitor */
+#idle_inhibitor {
+  padding-right: 10px;
+}
+#idle_inhibitor:hover {
+  color: @accent;
+}
+
+#idle_inhibitor.activated {
+  color: @fg-shine;
+}
+
+#custom-screencast-status {
+  color: @red;
+  padding: 0 5px;
+}
+
+#tray > widget > button.needs-attention {
+    color: @red;
+}
+
 /* Clock */
 #clock {
   padding-left: 0;
   color: @fg-shine;
-  font-family: "digital-7", "JetBrains Mono"; /* Urutan font cadangan */
   font-size: 16px;
   font-weight: bold;
 }
