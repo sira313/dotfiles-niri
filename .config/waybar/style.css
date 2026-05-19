@@ -191,6 +191,7 @@ window#waybar {
 
 /* Shared defaults for right modules */
 #tray,
+#idle_inhibitor,
 #custom-power-profile,
 #pulseaudio,
 #bluetooth,
@@ -204,6 +205,15 @@ window#waybar {
 /* tray */
 #tray > widget > button.passive {
     -gtk-icon-effect: dim;
+}
+
+/* Idle Inhibitor */
+#idle_inhibitor:hover {
+  color: @accent;
+}
+
+#idle_inhibitor.activated {
+  color: @fg-shine;
 }
 
 #custom-screencast-status {

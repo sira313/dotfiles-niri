@@ -3,18 +3,15 @@
 // ╚══════════════════════════════════════════════════════════╝
 {
   // ── Bar geometry ──────────────────────────────────────────
-  "layer":     "top",
-  "position":  "top",
+  "layer": "top",
+  "position": "top",
   "exclusive": false,
   "passthrough": false,
-
-  "height":      38,
-  "spacing":      10,
-
-  "margin-top":    5,
-  "margin-left":   5,
-  "margin-right":  5,
-
+  "height": 38,
+  "spacing": 10,
+  "margin-top": 5,
+  "margin-left": 5,
+  "margin-right": 5,
   // ── Layout ────────────────────────────────────────────────
   "modules-left": [
     "custom/arch",
@@ -24,13 +21,12 @@
     "disk",
     "niri/workspaces"
   ],
-
   "modules-center": [
     "custom/search"
   ],
-
   "modules-right": [
     "tray",
+    "idle_inhibitor",
     "custom/screencast-status",
     "custom/power-profile",
     "pulseaudio",
@@ -39,56 +35,51 @@
     "battery",
     "clock"
   ],
-
   // ╔══════════════════════════════════════════════════════════╗
   // ║  LEFT                                                    ║
   // ╚══════════════════════════════════════════════════════════╝
-
   // ── Arch Logo ─────────────────────────────────────────────
   "custom/arch": {
     "format": "󰣇",
     "tooltip": false
   },
-
   // ── CPU ───────────────────────────────────────────────────
   "cpu": {
-    "interval":  2,
-    "format":    "󰍛 {usage}%",
-    "tooltip":   false,
-    "on-click":  "kitty --class btop-float -e btop"
+    "interval": 2,
+    "format": "󰍛 {usage}%",
+    "tooltip": false,
+    "on-click": "kitty --class btop-float -e btop"
   },
-
   // ── Memory ────────────────────────────────────────────────
   "memory": {
-    "interval":      5,
-    "format":        "󰘚 {percentage}%",
+    "interval": 5,
+    "format": "󰘚 {percentage}%",
     "tooltip-format": "{used:0.1f}G / {total:0.1f}G",
-    "on-click":      "kitty --class btop-float -e btop"
+    "on-click": "kitty --class btop-float -e btop"
   },
   // ── Disk (Storage) ────────────────────────────────────────
   "disk": {
     "interval": 30,
-    "path": "/", 
+    "path": "/",
     "format": "󰋊 {percentage_used}%",
     "tooltip-format": "{used} / {total} ({percentage_free}% free)",
-    "on-click": "kitty --class btop-float -e btop" 
+    "on-click": "kitty --class btop-float -e btop"
   },
   // ── MPRIS (Media Player) ─────────────────────────────────
   "mpris": {
     "format": "{player_icon}  󰒮{status_icon}󰒭",
     "format-paused": "{player_icon}  󰒮{status_icon}󰒭",
     "format-playing": "{player_icon}  󰒮{status_icon}󰒭",
-
     "player-icons": {
-        "spotify": "",
-        "firefox": "󰈹",
-        "mpv": "󰐹",
-        "default": "󱖏"
+      "spotify": "",
+      "firefox": "󰈹",
+      "mpv": "󰐹",
+      "default": "󱖏"
     },
     "status-icons": {
-        "playing": "  ",
-        "paused": "  ",
-        "stopped": "  "
+      "playing": "  ",
+      "paused": "  ",
+      "stopped": "  "
     },
     "tooltip": false,
     "on-click": "playerctl play-pause",
@@ -100,128 +91,143 @@
     "all-outputs": false,
     "format": "{icon}",
     "format-icons": {
-      "active":  "󰮯",
+      "active": "󰮯",
       "default": "○"
     }
   },
-
   // ╔══════════════════════════════════════════════════════════╗
   // ║  CENTER                                                  ║
   // ╚══════════════════════════════════════════════════════════╝
-
   // ── Search ────────────────────────────────────────────────
   "custom/search": {
-    "format":   "󰍉 Search",
-    "tooltip":  false,
+    "format": "󰍉 Search",
+    "tooltip": false,
     "on-click": "fuzzel --no-icons"
   },
-
   // ╔══════════════════════════════════════════════════════════╗
   // ║  RIGHT                                                   ║
   // ╚══════════════════════════════════════════════════════════╝
-
   // ── System tray ───────────────────────────────────────────
   "tray": {
-      "icon-size": 12,
-      "spacing": 10
+    "icon-size": 12,
+    "spacing": 10
   },
-
+  // Inhibitor
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "󱎴",
+      "deactivated": "󰍹",
+    },
+  },
   // ── Record ────────────────────────────────────────────────
   "custom/screencast-status": {
-		"exec": "~/.config/waybar/scripts/status-wfr.sh",
-		"interval": 2,
-		"return-type": "json",
-		"format": "{icon}",
-		"format-icons": {
-			"recording": "",
-			// "idle": "",
-		},
-		"tooltip-format": "Recording screen. Click to stop.",
-		"on-click": "~/.config/niri/scripts/toggle-wfr",
-	},
-
+    "exec": "~/.config/waybar/scripts/status-wfr.sh",
+    "interval": 2,
+    "return-type": "json",
+    "format": "{icon}",
+    "format-icons": {
+      "recording": "",
+      // "idle": "",
+    },
+    "tooltip-format": "Recording screen. Click to stop.",
+    "on-click": "~/.config/niri/scripts/toggle-wfr",
+  },
   // ── Power Profile ─────────────────────────────────────────
   "custom/power-profile": {
-    "exec":        "~/.config/waybar/scripts/tuned-profile.sh get",
-    "interval":    5,
+    "exec": "~/.config/waybar/scripts/tuned-profile.sh get",
+    "interval": 5,
     "return-type": "json",
-    "format":      "{icon}",
+    "format": "{icon}",
     "format-icons": {
       "performance": "󰓅",
-      "balanced":    "󰾅",
-      "powersave":   "󰾆"
+      "balanced": "󰾅",
+      "powersave": "󰾆"
     },
     "tooltip-format": "Power: {alt}",
     "on-click": "~/.config/waybar/scripts/tuned-profile.sh toggle"
   },
-
   // ── Audio ─────────────────────────────────────────────────
   "pulseaudio": {
-    "format":       "{icon}",
+    "format": "{icon}",
     "format-muted": "󰸈",
     "format-icons": {
       "headphone": "󰋋",
-      "default":   ["󰕿", "󰖀", "󰕾"]
+      "default": [
+        "󰕿",
+        "󰖀",
+        "󰕾"
+      ]
     },
-    "tooltip-format":  "{desc} · {volume}%",
-    "on-click":        "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-    "on-scroll-up":    "pactl set-sink-volume @DEFAULT_SINK@ +2%",
-    "on-scroll-down":  "pactl set-sink-volume @DEFAULT_SINK@ -2%"
+    "tooltip-format": "{desc} · {volume}%",
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2%",
+    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2%"
   },
-
   // ── Bluetooth ─────────────────────────────────────────────
   "bluetooth": {
-    "format":           "󰂯",
+    "format": "󰂯",
     "format-connected": "󰂱",
-    "format-off":       "󰂲",
-    "tooltip-format":              "{controller_alias} · {num_connections} connected",
-    "tooltip-format-connected":    "{controller_alias}\n{device_enumerate}",
-    "tooltip-format-enumerate-connected":         "  {device_alias}",
+    "format-off": "󰂲",
+    "tooltip-format": "{controller_alias} · {num_connections} connected",
+    "tooltip-format-connected": "{controller_alias}\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "  {device_alias}",
     "tooltip-format-enumerate-connected-battery": "  {device_alias} · {device_battery_percentage}%",
     "on-click": "kitty --class bluetui-float -e bluetui"
   },
-
   // ── Network ───────────────────────────────────────────────
   "network": {
-    "format-wifi":        "{icon}",
-    "format-ethernet":    "󰲝",
+    "format-wifi": "{icon}",
+    "format-ethernet": "󰲝",
     "format-disconnected": "󰤫",
-    "format-icons":       ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
-    "tooltip-format-wifi":        "{essid} · {signalStrength}%\n{ipaddr}",
-    "tooltip-format-ethernet":    "{ifname} · {ipaddr}",
+    "format-icons": [
+      "󰤯",
+      "󰤟",
+      "󰤢",
+      "󰤥",
+      "󰤨"
+    ],
+    "tooltip-format-wifi": "{essid} · {signalStrength}%\n{ipaddr}",
+    "tooltip-format-ethernet": "{ifname} · {ipaddr}",
     "tooltip-format-disconnected": "Disconnected",
     "on-click": "~/.config/waybar/scripts/nmtui.sh"
   },
-
   // ── Battery ───────────────────────────────────────────────
   "battery": {
-    "interval":   30,
+    "interval": 30,
     "states": {
-      "warning":  30,
+      "warning": 30,
       "critical": 15
     },
-    "format":          "{icon} {capacity}%",
+    "format": "{icon} {capacity}%",
     "format-charging": "󰂄 {capacity}%",
-    "format-plugged":  "󰚥 {capacity}%",
+    "format-plugged": "󰚥 {capacity}%",
     "format-icons": [
-      "󰁺","󰁻","󰁼","󰁽","󰁾",
-      "󰁿","󰂀","󰂁","󰂂","󰁹"
+      "󰁺",
+      "󰁻",
+      "󰁼",
+      "󰁽",
+      "󰁾",
+      "󰁿",
+      "󰂀",
+      "󰂁",
+      "󰂂",
+      "󰁹"
     ],
     "tooltip-format": "{timeTo}\n{power}W"
   },
-
   // ── Clock ─────────────────────────────────────────────────
   "clock": {
-    "format":     "{:%H:%M}",
+    "format": "{:%H:%M}",
     "format-alt": "{:%a, %d %b %Y}",
     "tooltip-format": "<tt>{calendar}</tt>",
     "calendar": {
-      "mode":         "month",
+      "mode": "month",
       "mode-mon-col": 3,
       "format": {
-        "months":   "<span color='#f9e2af'><b>{}</b></span>",
+        "months": "<span color='#f9e2af'><b>{}</b></span>",
         "weekdays": "<span color='#89b4fa'><b>{}</b></span>",
-        "today":    "<span background='#f38ba870'><b><u>{}</u></b></span>"
+        "today": "<span background='#f38ba870'><b><u>{}</u></b></span>"
       }
     }
   }

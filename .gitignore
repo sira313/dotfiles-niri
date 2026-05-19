@@ -1,0 +1,3 @@
+.config/micro/*
+!.config/micro/settings.json
+!.config/micro/colorschemes/
