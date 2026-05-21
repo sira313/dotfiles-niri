@@ -10,3 +10,5 @@ end
 set -gx XCURSOR_THEME Qogir-Ubuntu-Dark
 set -gx XCURSOR_SIZE 24
 set -gx PATH $HOME/.local/bin $PATH
+
+nvm use default --silent >/dev/null 2>&1

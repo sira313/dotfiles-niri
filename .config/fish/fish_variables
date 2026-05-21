@@ -2,3 +2,4 @@
 # VERSION: 3.0
 SETUVAR __fish_initialized:4300
 SETUVAR fish_color_autosuggestion:7c7c7c
+SETUVAR --export nvm_default_version:lts
