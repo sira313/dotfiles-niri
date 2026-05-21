@@ -209,6 +209,12 @@ To manage the Windows VM, press `Meta + Space` and search:
 - **Start Win** — start Windows and FreeRDP
 - **Stop Win** — stop the service
 
+## Use Micro in Ranger
+```
+set -Ux EDITOR micro
+set -Ux VISUAL micro
+```
+
 ## Keyboard Shortcuts
 
 | Shortcut | Action |
