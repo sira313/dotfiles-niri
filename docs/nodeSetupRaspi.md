@@ -32,7 +32,6 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 ```bash
 micro ~/.config/fish/config.fish
 ```
-
 Use this config:
 
 ```fish
@@ -51,6 +50,8 @@ set -gx NVM_DIR $HOME/.nvm
 function nvm
     bass source $NVM_DIR/nvm.sh --no-use ';' nvm $argv
 end
+
+bass source $NVM_DIR/nvm.sh --no-use ';' nvm use default >/dev/null 2>&1
 
 if status is-interactive
     alias ls="eza --icons=always --color=always --group-directories-first"
