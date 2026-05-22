@@ -29,7 +29,7 @@ makepkg -si
 ## Install Prerequisites
 
 ```bash
-paru -S fish \
+paru -S fish eza \
   micro btop fastfetch \
   brightnessctl \
   cliphist \
@@ -50,16 +50,15 @@ paru -S fish \
   xwayland-satellite \
   podman-compose \
   mako \
-  waybar \
+  waybar hyprpicker \
   fuzzel rofimoji \
   ttf-firacode-nerd \
   swaylock swaybg \
   bluetui nmtui \
-  eww hyprpicker \
-  ryzenadj
+  eww ryzenadj
 ```
 
-> **Note:** `ryzenadj` is optional.
+> **Note:** `eww` and `ryzenadj` is optional.
 
 ## Configuration
 
