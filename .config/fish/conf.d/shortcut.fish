@@ -1,82 +1,92 @@
-# Bikin snapshot
-function snap --description 'Membuat snapshot btrfs dengan snapper secara interaktif'
-    read -P "Masukkan keterangan snapshot: " deskripsi
-    if test -z "$deskripsi"
-        echo "Error: Deskripsi tidak boleh kosong."
+# Create snapshot
+function snap --description 'Create a btrfs snapshot interactively with snapper'
+    read -P "Enter snapshot description: " description
+    if test -z "$description"
+        echo "Error: Description cannot be empty."
         return 1
     end
-    echo "Membuat snapshot untuk config 'root'..."
-    sudo snapper -c root create -d "$deskripsi"
+
+    echo "Creating snapshot for config 'root'..."
+    sudo snapper -c root create -d "$description"
+
     if test $status -eq 0
-        echo "Snapshot berhasil dibuat."
+        echo "Snapshot created successfully."
     else
-        echo "Gagal membuat snapshot."
+        echo "Failed to create snapshot."
     end
 end
 
-# Melihat list snapshot
-function snap-list --description 'Menampilkan daftar snapshot snapper root'
+# View snapshot list
+function snap-list --description 'Show snapper root snapshot list'
     sudo snapper -c root list
 end
 
-# Hapus snapshot yang tidak diperlukan
-function snap-del --description 'Menghapus snapshot snapper root berdasarkan nomor'
+# Delete unused snapshot
+function snap-del --description 'Delete a snapper root snapshot by number'
     if test (count $argv) -eq 0
-        echo "Penggunaan: snap-del <nomor_snapshot>"
+        echo "Usage: snap-del <snapshot_number>"
         return 1
     end
-    set -l nomor $argv[1]
-    read -P "Apakah Anda yakin ingin menghapus snapshot nomor $nomor? [y/N]: " konfirmasi
-    if test "$konfirmasi" = "y" -o "$konfirmasi" = "Y"
-        echo "Menghapus snapshot $nomor..."
-        sudo snapper -c root delete $nomor
+
+    set -l number $argv[1]
+
+    read -P "Are you sure you want to delete snapshot number $number? [y/N]: " confirm
+
+    if test "$confirm" = "y" -o "$confirm" = "Y"
+        echo "Deleting snapshot $number..."
+        sudo snapper -c root delete $number
+
         if test $status -eq 0
-            echo "Snapshot $nomor berhasil dihapus."
+            echo "Snapshot $number deleted successfully."
         else
-            echo "Gagal menghapus snapshot $nomor."
+            echo "Failed to delete snapshot $number."
         end
     else
-        echo "Operasi dibatalkan."
+        echo "Operation cancelled."
     end
 end
 
-# Fix bug cpu throttle
+# Fix CPU throttle
 function fixcpu --description 'Fix AMD Ryzen throttling by overriding power limits'
-    echo "Mencoba melepaskan limitasi daya CPU..."
-    
-    # Menjalankan ryzenadj dengan parameter yang sudah kita uji
+    echo "Attempting to remove CPU power limits..."
+
+    # Run ryzenadj with tested parameters
     sudo ryzenadj --stapm-limit=25000 --fast-limit=25000 --slow-limit=25000
-    
+
     if test $status -eq 0
-        echo "Berhasil! Memeriksa frekuensi CPU saat ini..."
-        # Menampilkan frekuensi CPU saat ini sekilas
+        echo "Success! Checking current CPU frequencies..."
+
+        # Display current CPU frequencies briefly
         grep "cpu MHz" /proc/cpuinfo | head -n 4
     else
-        echo "Gagal menjalankan ryzenadj. Pastikan password sudo benar."
+        echo "Failed to run ryzenadj. Make sure your sudo password is correct."
     end
 end
 
-# Buka samba share ke Public dir
+# Enable samba share for Public dir
 function share-on
     sudo systemctl start smb nmb
+
     if test $status -eq 0
-        notify-send 'Samba Server' 'Folder Public Aktif' -i network-server
+        notify-send 'Samba Server' 'Public folder sharing enabled' -i network-server
         echo "Samba started successfully."
     end
 end
 
-# Tutup akses samba share
+# Disable samba share
 function share-off
     sudo systemctl stop smb nmb
+
     if test $status -eq 0
-        notify-send 'Samba Server' 'Sharing Berhenti' -i network-offline
+        notify-send 'Samba Server' 'Sharing stopped' -i network-offline
         echo "Samba stopped successfully."
     end
 end
 
-# Bersihkan riwayat clipboard
-function clip-wipe --description 'Menghapus semua riwayat clipboard cliphist'
+# Clear clipboard history
+function clip-wipe --description 'Clear all cliphist clipboard history'
     rm ~/.cache/cliphist/db && notify-send "Clipboard" "History cleared!"
+
     if test $status -eq 0
         echo "Clipboard history wiped clean."
     end

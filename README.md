@@ -30,15 +30,11 @@ makepkg -si
 
 ```bash
 paru -S fish eza \
-  micro btop fastfetch \
-  brightnessctl \
-  cliphist \
-  wl-clipboard \
-  niri \
+  less micro btop fastfetch \
+  brightnessctl cliphist wl-clipboard \
+  niri mako waybar hyprpicker fuzzel rofimoji \
   polkit-gnome \
-  kitty nautilus \
-  totem \
-  loupe \
+  kitty nautilus totem loupe \
   wf-recorder slurp \
   gst-plugins-good \
   gst-plugins-bad \
@@ -49,9 +45,6 @@ paru -S fish eza \
   freerdp \
   xwayland-satellite \
   podman-compose \
-  mako \
-  waybar hyprpicker \
-  fuzzel rofimoji \
   ttf-firacode-nerd \
   swaylock swaybg \
   bluetui nmtui \
@@ -196,7 +189,7 @@ sudo ufw reload
 
 ### Windows VM
 
-Copy `windows11.iso` to `~/Documents/iso`, then:
+Rename and copy `win11.iso` to `~/Documents/iso`, then:
 
 ```bash
 cd Documents/windows11/ && podman-compose up -d && podman-compose logs -f

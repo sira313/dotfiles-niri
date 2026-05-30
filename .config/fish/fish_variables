@@ -4,4 +4,5 @@ SETUVAR --export EDITOR:micro
 SETUVAR --export VISUAL:micro
 SETUVAR __fish_initialized:4300
 SETUVAR fish_color_autosuggestion:7c7c7c
+SETUVAR fish_user_paths:/home/aris/\x2eopencode/bin
 SETUVAR --export nvm_default_version:lts

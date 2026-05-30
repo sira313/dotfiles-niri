@@ -21,3 +21,5 @@ if status is-interactive
     alias la="eza -a --icons=always --color=always --group-directories-first"
     alias lla="eza -la --icons=always --color=always --group-directories-first"
 end
+# opencode
+fish_add_path /home/aris/.opencode/bin
