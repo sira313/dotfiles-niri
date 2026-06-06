@@ -197,6 +197,7 @@ window#waybar {
 #pulseaudio,
 #bluetooth,
 #network,
+#custom-airplane-mode,
 #battery,
 #clock {
   color:   @fg-dim;
@@ -225,6 +226,11 @@ window#waybar {
 /* Network */
 #network:hover                { color: @accent; }
 #network.disconnected         { color: @red;    }
+
+/* Airplane Mode */
+#custom-airplane-mode:hover     { color: @accent; }
+#custom-airplane-mode.enabled   { color: @fg-shine; }
+#custom-airplane-mode.disabled  { color: @fg-dim; opacity: 0.8; }
 
 /* Battery */
 #battery {

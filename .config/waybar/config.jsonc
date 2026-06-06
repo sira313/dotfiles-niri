@@ -32,6 +32,7 @@
     "pulseaudio",
     "bluetooth",
     "network",
+    "custom/airplane-mode",
     "battery",
     "idle_inhibitor",
     "clock"
@@ -187,6 +188,19 @@
     "tooltip-format-ethernet": "{ifname} · {ipaddr}",
     "tooltip-format-disconnected": "Disconnected",
     "on-click": "~/.config/waybar/scripts/nmtui.sh"
+  },
+  // ── Airplane Mode ─────────────────────────────────────────
+  "custom/airplane-mode": {
+    "exec": "~/.config/waybar/scripts/airplane-mode.sh status",
+    "interval": 5,
+    "return-type": "json",
+    "format": "{icon}",
+    "format-icons": {
+      "enabled": "",
+      "disabled": ""
+    },
+    "tooltip-format": "Airplane Mode: {alt}",
+    "on-click": "~/.config/waybar/scripts/airplane-mode.sh toggle"
   },
   // ── Battery ───────────────────────────────────────────────
   "battery": {
