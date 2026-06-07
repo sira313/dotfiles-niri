@@ -196,8 +196,8 @@
     "return-type": "json",
     "format": "{icon}",
     "format-icons": {
-      "enabled": "",
-      "disabled": ""
+      "enabled": "󰀝",
+      "disabled": "󰀞"
     },
     "tooltip-format": "Airplane Mode: {alt}",
     "on-click": "~/.config/waybar/scripts/airplane-mode.sh toggle"

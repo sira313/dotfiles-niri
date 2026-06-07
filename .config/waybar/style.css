@@ -210,17 +210,16 @@ window#waybar {
 }
 
 /* Power profile */
-#custom-power-profile         { color: @yellow; }
 #custom-power-profile:hover   { color: @accent; }
 
 /* Volume */
 #pulseaudio:hover             { color: @accent;  }
-#pulseaudio.muted             { color: @fg-dim; opacity: 0.5; }
+#pulseaudio.muted             { color: @fg-dim; }
 
 /* Bluetooth */
 #bluetooth.connected          { color: @fg-shine; }
 #bluetooth.connected:hover    { color: @accent;   }
-#bluetooth.off                { color: @fg-dim; opacity: 0.5; }
+#bluetooth.off                { color: @fg-dim; }
 #bluetooth:hover              { color: @accent; }
 
 /* Network */
@@ -228,9 +227,10 @@ window#waybar {
 #network.disconnected         { color: @red;    }
 
 /* Airplane Mode */
-#custom-airplane-mode:hover     { color: @accent; }
-#custom-airplane-mode.enabled   { color: @fg-shine; }
-#custom-airplane-mode.disabled  { color: @fg-dim; opacity: 0.8; }
+#custom-airplane-mode:hover                       { color: @accent; }
+#custom-airplane-mode.enabled                     { color: @fg-shine; }
+#custom-airplane-mode.disabled                    { color: @fg-dim; }
+#custom-airplane-mode.disabled:hover              { color: @accent; }
 
 /* Battery */
 #battery {

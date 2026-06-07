@@ -18,9 +18,9 @@ case "${1:-status}" in
   status)
     class=$(get_status)
     if [ "$class" = "enabled" ]; then
-      printf '{"text":"","alt":"enabled","tooltip":"Airplane Mode: ON","class":"enabled"}\n'
+      printf '{"text":"󰀝","alt":"enabled","tooltip":"Airplane Mode: ON","class":"enabled"}\n'
     else
-      printf '{"text":"","alt":"disabled","tooltip":"Airplane Mode: OFF","class":"disabled"}\n'
+      printf '{"text":"󰀞","alt":"disabled","tooltip":"Airplane Mode: OFF","class":"disabled"}\n'
     fi
     ;;
 
