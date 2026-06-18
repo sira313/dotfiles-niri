@@ -1,50 +1,54 @@
 # dotfiles-niri
 
-Arch Linux + Niri (Wayland compositor) + Waybar + Fish shell dotfiles.
+Arch Linux + Niri (Wayland) + Waybar + Fish shell dotfiles.  
+Single user, single branch (`main`), no CI/CD — personal repo.
 
-## Install / sync
+## Install
 
 ```bash
-./sync                    # symlinks all .config/* dirs/files → ~/.config/
+./sync                    # symlinks .config/* dirs+files → ~/.config/ + .local/share/applications/
 ```
 
-- `./sync` skips `eww` (listed in `exclude` array in the script). EWW config must be manually copied/linked.
+- `./sync` skips `eww` (hardcoded in `exclude` array). EWW must be linked manually; dashboards are no longer actively used.
 - `.config/micro/*` is gitignored except `settings.json` and `colorschemes/`.
 
-## Key layout
+## Config layout
 
-| Path | Purpose |
-|------|---------|
-| `.config/niri/config.kdl` | Compositor entrypoint; includes `conf/*.kdl` |
-| `.config/niri/conf/binds.kdl` | All keybindings (Mod=Super/Win) |
-| `.config/niri/conf/startup.kdl` | Auto-started services (waybar, mako, cliphist, swayidle, swaybg) |
-| `.config/niri/scripts/` | Custom scripts (powermenu, clipboard, OSD, emoji, screen recording toggle, cheatsheet) |
-| `.config/niri/conf/input.kdl` | Input device config |
-| `.config/niri/conf/layout.kdl` | Window layout settings |
-| `.config/niri/conf/window-rules.kdl` | Per-window rules |
-| `.config/niri/conf/output.kdl` | Monitor output config |
-| `.config/waybar/config.jsonc` | Waybar bar layout and modules |
-| `.config/waybar/style.css` | Waybar styling |
-| `.config/waybar/scripts/` | Waybar custom module scripts (nmtui, tuned-profile, screencast status) |
-| `.config/fish/config.fish` | Fish shell init (starship prompt, eza aliases, path) |
-| `.config/fish/functions/start-win.fish` | Windows VM launcher (podman-compose → freerdp) |
+| Path | Contents |
+|------|----------|
+| `.config/niri/config.kdl` | Top-level only + `include "conf/*.kdl"` — do **not** put top-level opts in sub-files |
+| `.config/niri/conf/binds.kdl` | All keybindings (`Mod` = Super) |
+| `.config/niri/conf/startup.kdl` | Auto-started: waybar, mako, polkit, swayidle (120s→off, 180s→suspend), swaybg, cliphist |
+| `.config/niri/scripts/` | Custom scripts: `osd`, `powermenu`, `clipboard`, `emoji`, `toggle-wfr`, `cheatsheet` |
+| `.config/waybar/config.jsonc` | Bar layout + custom module wiring |
+| `.config/waybar/scripts/` | Waybar custom modules: `tuned-profile.sh`, `status-wfr.sh`, `airplane-mode.sh`, `nmtui.sh` |
+| `.config/fish/config.fish` | starship prompt, eza aliases, `$PATH` |
 | `.config/fish/conf.d/shortcut.fish` | Fish functions: `snap`/`snap-list`/`snap-del` (btrfs), `fixcpu` (ryzenadj), `share-on`/`share-off` (samba), `clip-wipe` |
-| `.local/share/applications/` | Desktop entries (`win-start.desktop`, `win-stop.desktop`) |
-| `windows11/podman-compose.yml` | Windows 11 VM definition (podman, dockurr/windows image) |
-| `docs/` | Supplementary setup notes (Node.js on Arch, Pi setup, touch/jump fix) |
+| `.config/fish/functions/start-win.fish` | Windows VM launcher (podman-compose → freerdp3 RDP) |
+| `.local/share/applications/` | Desktop entries `win-start.desktop`, `win-stop.desktop` |
+| `windows11/podman-compose.yml` | Windows 11 VM (dockurr/windows, podman) |
+| `docs/` | Setup notes (Node.js on Arch, Pi setup, touch/jump fix) |
+| `.config/eww/` | EWW dashboard — excluded from sync, not actively used |
 
-## Notable conventions
+## Key script wiring (non-obvious)
 
-- Keybindings use `Mod` = Super/Win key.
-- Screenshot path: `~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png`
-- Clipboard: `cliphist` + `wl-paste` (stores text and images on startup).
-- Screen recording: `wf-recorder` via `toggle-wfr` script.
-- Audio: `pipewire` + `wpctl` + `playerctl`.
-- Brightness: `brightnessctl` on `--class=backlight`.
-- Power profiles: `tuned` via `tuned-profile.sh`.
-- XWayland: `xwayland-satellite` + `xhost +si:localuser:root` for root Xorg apps.
-- Niri `config.kdl` includes `conf/*.kdl` — do not put top-level options in the sub-files.
+| Script | Language | Calls / Conventions |
+|--------|----------|---------------------|
+| `niri/scripts/osd` | bash | Sourced from binds with arg `sink`/`source`/`brightness`. Sources `utils` for `notify_replace` (replaces previous OSD notification via ID file) |
+| `niri/scripts/toggle-wfr` | bash | Called from niri bind `Mod+S` and waybar screencast module click. Uses fuzzel for mode/audio selection. Output: `~/Videos/ScreenRecord/` |
+| `waybar/scripts/status-wfr.sh` | bash | Polled by waybar (`interval: 2`); outputs `{"alt":"recording"}` or `{"alt":"idle"}` |
+| `waybar/scripts/tuned-profile.sh` | bash | Waybar custom module: `get` → json for display, `toggle` → cycles powersave/balanced/throughput-performance |
+| `waybar/scripts/airplane-mode.sh` | bash | Waybar custom module: `status` → json for display, `toggle` → toggles WiFi + BT |
+| `waybar/scripts/nmtui.sh` | bash | Single-use: launches kitty with themed `nmtui` (NEWT_COLORS) |
+| `niri/scripts/clipboard` | **fish** | cliphist list → fuzzel → wl-copy → wtype Ctrl+V |
+| `niri/scripts/emoji` | **fish** | rofimoji --selector fuzzel --action copy → wtype Ctrl+V |
+| `niri/scripts/powermenu` | **fish** | fuzzel menu → systemctl / niri msg |
+| `niri/scripts/cheatsheet_parser.py` | python | Parses `binds.kdl` to generate the cheatsheet shown by `Mod+Shift+/` |
 
-## Git
+## Conventions
 
-No strict conventions. This is a personal dotfiles repo — single branch (`main`), no CI/CD.
+- **Mod** = Super/Win. Screenshots → `~/Pictures/Screenshots/`.
+- Audio: `pipewire` + `wpctl` + `playerctl`. Brightness: `brightnessctl --class=backlight`.
+- Power profiles via `tuned` (D-Bus `busctl` call, falls back to `sudo tuned-adm`).
+- XWayland root apps: `xwayland-satellite` + `xhost +si:localuser:root` in startup.
+- Clipboard: `cliphist` stored on startup via `wl-paste --watch`, retrieved with `cliphist decode | wl-copy`.
