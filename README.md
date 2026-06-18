@@ -32,7 +32,7 @@ makepkg -si
 paru -S fish eza \
   less micro btop fastfetch \
   brightnessctl cliphist wl-clipboard \
-  niri mako waybar hyprpicker fuzzel rofimoji \
+  niri mako libnotify waybar hyprpicker fuzzel rofimoji \
   polkit-gnome \
   kitty nautilus totem loupe \
   wf-recorder slurp \
@@ -47,7 +47,7 @@ paru -S fish eza \
   podman-compose \
   ttf-firacode-nerd \
   swaylock swaybg \
-  bluetui nmtui \
+  bluetui nmtui-go \
   eww ryzenadj
 ```
 
