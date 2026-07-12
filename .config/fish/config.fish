@@ -23,3 +23,13 @@ if status is-interactive
 end
 # opencode
 fish_add_path /home/aris/.opencode/bin
+
+# pnpm
+set -gx PNPM_HOME "/home/aris/.local/share/pnpm"
+if not string match -q -- "$PNPM_HOME/bin" $PATH
+  set -gx PATH "$PNPM_HOME/bin" $PATH
+end
+# pnpm end
+
+# mimocode
+fish_add_path /home/aris/.mimocode/bin
