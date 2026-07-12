@@ -124,11 +124,11 @@
     "return-type": "json",
     "format": "{icon}",
     "format-icons": {
-      "recording": "",
-      // "idle": "",
+      "recording": ""
+      // "idle": ""
     },
     "tooltip-format": "Recording screen. Click to stop.",
-    "on-click": "~/.config/niri/scripts/toggle-wfr",
+    "on-click": "~/.config/niri/scripts/toggle-wfr"
   },
   // ── Power Profile ─────────────────────────────────────────
   "custom/power-profile": {
@@ -231,8 +231,8 @@
     "format": "{icon}",
     "format-icons": {
       "activated": "󱎴",
-      "deactivated": "󰍹",
-    },
+      "deactivated": "󰍹"
+    }
   },
   // ── Clock ─────────────────────────────────────────────────
   "clock": {
