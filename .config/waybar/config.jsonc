@@ -66,7 +66,7 @@
     "path": "/",
     "format": "󰋊 {percentage_used}%",
     "tooltip-format": "{used} / {total} ({percentage_free}% free)",
-    "on-click": "kitty --class btop-float -e btop"
+    "on-click": "kitty --class gdu-float -e gdu ~/"
   },
   // ── MPRIS (Media Player) ─────────────────────────────────
   "mpris": {
