@@ -18,8 +18,8 @@ services:
       - "3389:3389/tcp"
       - "3389:3389/udp"
     volumes:
-      - /home/aris/Documents/windows11/windows:/storage
-      - /home/aris/Documents/iso/win11.iso:/boot.iso
-      - /home/aris/Public:/shared
+      - ~/Documents/windows11/windows:/storage
+      - ~/Documents/iso/win11.iso:/boot.iso
+      - ~/Public:/shared
     restart: on-failure
     stop_grace_period: 2m

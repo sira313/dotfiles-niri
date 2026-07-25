@@ -22,14 +22,14 @@ if status is-interactive
     alias lla="eza -la --icons=always --color=always --group-directories-first"
 end
 # opencode
-fish_add_path /home/aris/.opencode/bin
+fish_add_path $HOME/.opencode/bin
 
 # pnpm
-set -gx PNPM_HOME "/home/aris/.local/share/pnpm"
+set -gx PNPM_HOME "$HOME/.local/share/pnpm"
 if not string match -q -- "$PNPM_HOME/bin" $PATH
   set -gx PATH "$PNPM_HOME/bin" $PATH
 end
 # pnpm end
 
 # mimocode
-fish_add_path /home/aris/.mimocode/bin
+fish_add_path $HOME/.mimocode/bin
