@@ -11,7 +11,7 @@ set -gx XCURSOR_THEME Qogir-Ubuntu-Dark
 set -gx XCURSOR_SIZE 24
 set -gx PATH $HOME/.local/bin $PATH
 
-nvm use default --silent >/dev/null 2>&1
+nvm use default --silent 2>/dev/null
 
 # use Eza for folder icon
 if status is-interactive
