@@ -93,13 +93,14 @@ function strix-start
     end
 end
 
-# Stop docker (strix)
+# Stop docker (strix) and prevent autostart on boot
 function strix-stop
     sudo systemctl stop docker.service
+    sudo systemctl disable docker.service
 
     if test $status -eq 0
         notify-send 'Strix' 'Docker stopped'
-        echo "Docker stopped successfully."
+        echo "Docker stopped and disabled."
     end
 end
 
