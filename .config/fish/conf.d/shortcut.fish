@@ -83,6 +83,26 @@ function share-off
     end
 end
 
+# Start docker (strix) manually
+function strix-start
+    sudo systemctl start docker.service
+
+    if test $status -eq 0
+        notify-send 'Strix' 'Docker started'
+        echo "Docker started successfully."
+    end
+end
+
+# Stop docker (strix)
+function strix-stop
+    sudo systemctl stop docker.service
+
+    if test $status -eq 0
+        notify-send 'Strix' 'Docker stopped'
+        echo "Docker stopped successfully."
+    end
+end
+
 # Clear clipboard history
 function clip-wipe --description 'Clear all cliphist clipboard history'
     rm ~/.cache/cliphist/db && notify-send "Clipboard" "History cleared!"

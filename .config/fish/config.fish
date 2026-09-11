@@ -33,3 +33,6 @@ end
 
 # mimocode
 fish_add_path $HOME/.mimocode/bin
+
+# strix
+fish_add_path /home/aris/.strix/bin
