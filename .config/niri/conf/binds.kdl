@@ -30,7 +30,6 @@ binds {
     // LAUNCHERS
     // ─────────────────────────────
     Mod+G hotkey-overlay-title="Gemini" { spawn "google-chrome-stable" "--app=https://gemini.google.com"; }
-    Mod+shift+m hotkey-overlay-title="SecondMe" { spawn "google-chrome-stable" "--app=https://second.me/"; }
     Mod+shift+G hotkey-overlay-title="GPT" { spawn "google-chrome-stable" "--app=https://chatgpt.com/"; }
     Mod+T hotkey-overlay-title="Terminal" { spawn "kitty"; }
     Mod+E hotkey-overlay-title="File Manager" { spawn "nautilus"; }
