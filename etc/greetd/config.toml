@@ -1,0 +1,6 @@
+[terminal]
+vt = 1
+
+[default_session]
+command = "tuigreet --time --remember --remember-session --greeting 'Welcome to Niri' --cmd niri-session"
+user = "greeter"
