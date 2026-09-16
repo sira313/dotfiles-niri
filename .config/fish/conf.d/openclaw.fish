@@ -1,1 +1,1 @@
-fish_add_path -- "/home/aris/.local/share/nvm/v24.15.0/bin"
+fish_add_path -- $HOME/.local/share/nvm/*/bin

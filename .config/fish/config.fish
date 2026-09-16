@@ -35,4 +35,4 @@ end
 fish_add_path $HOME/.mimocode/bin
 
 # strix
-fish_add_path /home/aris/.strix/bin
+fish_add_path $HOME/.strix/bin
