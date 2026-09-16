@@ -44,6 +44,7 @@ Single user, single branch (`main`), no CI/CD — personal repo.
 | `niri/scripts/emoji` | **fish** | rofimoji --selector fuzzel --action copy → wtype Ctrl+V |
 | `niri/scripts/powermenu` | **fish** | fuzzel menu → systemctl / niri msg |
 | `niri/scripts/cheatsheet_parser.py` | python | Parses `binds.kdl` to generate the cheatsheet shown by `Mod+Shift+/` |
+| `niri/scripts/output-mode` | bash | Called from niri bind `Mod+Shift+S`. Fuzzel menu: Mirror (wl-mirror --fullscreen-output), Extend / Off (`niri msg output on/off`). Secondary picked via menu when >1 |
 
 ## Conventions
 

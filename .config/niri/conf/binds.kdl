@@ -55,6 +55,10 @@ binds {
         spawn "~/.config/niri/scripts/toggle-wfr"
     }
 
+    Mod+Shift+S hotkey-overlay-title="Output Mode (Mirror/Extend)" {
+        spawn "~/.config/niri/scripts/output-mode"
+    }
+
     // ─────────────────────────────
     // MEDIA CONTROL
     // ─────────────────────────────

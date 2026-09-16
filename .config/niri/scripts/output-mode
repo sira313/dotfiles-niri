@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+
+menu() {
+    echo -e "$1" | fuzzel --dmenu --prompt "$2 " --lines "$3" --width 20
+}
+
+choice=$(menu "Mirror screen\nExtend screen\nOutput off" "󰧈" 3)
+[ -z "$choice" ] && exit 1
+
+names=($(niri msg --json outputs | jq -r '.[].name'))
+primary=$(niri msg --json focused-output | jq -r .name)
+
+secondaries=()
+for n in "${names[@]}"; do
+    [ "$n" != "$primary" ] && secondaries+=("$n")
+done
+
+pick_target() {
+    local n target
+    menu "$(printf '%s\n' "${secondaries[@]}")" "Target " "${#secondaries[@]}"
+}
+
+case "$choice" in
+    "Mirror screen")
+        [ "${#secondaries[@]}" -eq 0 ] && {
+            notify-send -a Output "Error" "Second output not found"
+            exit 1
+        }
+        target=$(pick_target)
+        [ -z "$target" ] && exit 1
+        pkill -f "wl-mirror --fullscreen-output" 2>/dev/null
+        niri msg output "$target" on
+        notify-send -a Output "Mirror" "$primary -> $target"
+        wl-mirror --fullscreen-output "$target" "$primary" &
+    ;;
+    "Extend screen")
+        pkill -f "wl-mirror --fullscreen-output" 2>/dev/null
+        for n in "${secondaries[@]}"; do
+            niri msg output "$n" on
+        done
+        notify-send -a Output "Extend" "All outputs enabled"
+    ;;
+    "Output off")
+        pkill -f "wl-mirror --fullscreen-output" 2>/dev/null
+        for n in "${secondaries[@]}"; do
+            niri msg output "$n" off
+        done
+        notify-send -a Output "Off" "Laptop only"
+    ;;
+esac
