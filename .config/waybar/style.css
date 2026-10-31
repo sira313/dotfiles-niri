@@ -228,7 +228,10 @@ window#waybar {
 #network.disconnected         { color: @fg-dim;  }
 #network.disconnected:hover   { color: @accent;  }
 
-/* Cellular (WWAN) */
+/* Cellular (WWAN)
+   White (clock colour) while the WiFi hotspot is active. */
+#custom-cellular.hotspot                      { color: @fg-shine;  }
+#custom-cellular.hotspot:hover                { color: @accent;    }
 #custom-cellular:hover                        { color: @accent;    }
 #custom-cellular.connected                    { color: @fg-dim;    }
 #custom-cellular.idle,

@@ -66,6 +66,10 @@ fi
 if (( data_up )); then
   text="$icon"
   class="connected"
+  # Hotspot active → same colour as clock (handled by CSS class).
+  if nmcli -t -f NAME con show --active 2>/dev/null | grep -qx 'hotspot'; then
+    class="hotspot"
+  fi
 else
   icon="󰞃"
   case "$state" in

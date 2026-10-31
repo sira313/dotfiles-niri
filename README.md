@@ -187,6 +187,41 @@ sudo ufw reload
 | `share-on` | Share the Public directory |
 | `share-off` | Stop sharing the Public directory |
 
+### WiFi Hotspot
+
+Start/stop with `hotspot` / `hotspot-off` (functions in `.config/fish/functions/`). First run prompts SSID + WPA2 password; later runs reuse saved values. Hotspot uses `ipv4.method shared`, DHCP served by `dnsmasq`, uplink follows the default route (wwan).
+
+One-time firewall rules (needed with `ufw`):
+
+```bash
+sudo ufw allow in on wlp1s0 to any port 67 proto udp comment 'hotspot dhcp'
+sudo ufw allow in on wlp1s0 to any port 53 proto udp comment 'hotspot dns'
+sudo ufw allow in on wlp1s0 to any port 53 proto tcp comment 'hotspot dns tcp'
+sudo ufw route allow in on wlp1s0 comment 'hotspot forward'
+sudo ufw reload
+```
+
+IPv4 forwarding:
+
+```bash
+echo 'net.ipv4.ip_forward=1' | sudo tee /etc/sysctl.d/99-hotspot.conf
+sudo sysctl --system
+```
+
+DNS workaround: clients (`10.42.0.180`) get no answer from dnsmasq on `10.42.0.1:53`, so redirect client DNS to `8.8.8.8`:
+
+```bash
+sudo iptables -t nat -A PREROUTING -i wlp1s0 -p udp --dport 53 -j DNAT --to-destination 8.8.8.8:53
+sudo iptables -t nat -A PREROUTING -i wlp1s0 -p tcp --dport 53 -j DNAT --to-destination 8.8.8.8:53
+```
+
+Run after each reboot (rules are not persistent). Verify from the client: open `http://1.1.1.1` (IP/routing) and a domain name (DNS). On the host:
+
+```bash
+nmcli -f NAME,DEVICE,STATE con show --active
+sudo cat /proc/net/nf_conntrack | grep 10.42.0
+```
+
 ### Windows VM
 
 Rename and copy `win11.iso` to `~/Documents/iso`, then:
