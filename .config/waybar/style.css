@@ -5,7 +5,7 @@
    Layout:
      Left   — mpris | cpu | memory | disk | workspaces
      Center — search
-     Right  — power-profile | volume | bluetooth | network | battery | clock
+     Right  — power-profile | volume | bluetooth | network | cellular | battery | clock
 */
 
 /* ── Palette ─────────────────────────────────────────────── */
@@ -197,6 +197,7 @@ window#waybar {
 #pulseaudio,
 #bluetooth,
 #network,
+#custom-cellular,
 #custom-airplane-mode,
 #battery,
 #clock {
@@ -224,7 +225,17 @@ window#waybar {
 
 /* Network */
 #network:hover                { color: @accent; }
-#network.disconnected         { color: @red;    }
+#network.disconnected         { color: @fg-dim;  }
+#network.disconnected:hover   { color: @accent;  }
+
+/* Cellular (WWAN) */
+#custom-cellular:hover                        { color: @accent;    }
+#custom-cellular.connected                    { color: @fg-dim;    }
+#custom-cellular.idle,
+#custom-cellular.off                          { color: @fg-dim;    }
+#custom-cellular.connected:hover,
+#custom-cellular.idle:hover,
+#custom-cellular.off:hover                    { color: @accent;    }
 
 /* Airplane Mode */
 #custom-airplane-mode:hover                       { color: @accent; }

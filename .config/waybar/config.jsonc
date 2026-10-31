@@ -32,6 +32,7 @@
     "pulseaudio",
     "bluetooth",
     "network",
+    "custom/cellular",
     "custom/airplane-mode",
     "battery",
     "idle_inhibitor",
@@ -188,6 +189,14 @@
     "tooltip-format-ethernet": "{ifname} · {ipaddr}",
     "tooltip-format-disconnected": "Disconnected",
     "on-click": "~/.config/waybar/scripts/nmtui.sh"
+  },
+  // ── Cellular (WWAN / ModemManager) ────────────────────────
+  "custom/cellular": {
+    "exec": "~/.config/waybar/scripts/cellular.sh",
+    "interval": 10,
+    "return-type": "json",
+    "format": "{text}",
+    "on-click": "kitty --class cellular-float -e ~/.config/waybar/scripts/cellular-menu.sh"
   },
   // ── Airplane Mode ─────────────────────────────────────────
   "custom/airplane-mode": {

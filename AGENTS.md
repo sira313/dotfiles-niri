@@ -39,6 +39,8 @@ Single user, single branch (`main`), no CI/CD — personal repo.
 | `waybar/scripts/status-wfr.sh` | bash | Polled by waybar (`interval: 2`); outputs `{"alt":"recording"}` or `{"alt":"idle"}` |
 | `waybar/scripts/tuned-profile.sh` | bash | Waybar custom module: `get` → json for display, `toggle` → cycles powersave/balanced/throughput-performance |
 | `waybar/scripts/airplane-mode.sh` | bash | Waybar custom module: `status` → json for display, `toggle` → toggles WiFi + BT |
+| `waybar/scripts/cellular.sh` | bash | Waybar WWAN icon: reads `mmcli -m N -K`, outputs signal icon + tooltip; click opens `cellular-menu.sh` |
+| `waybar/scripts/cellular-menu.sh` | bash | Interactive WWAN menu; delegates to `~/Documents/Projects/xmm7360-wwan/scripts/wwan` (up/down/status/sim/reset/diag) |
 | `waybar/scripts/nmtui.sh` | bash | Single-use: launches kitty with themed `nmtui` (NEWT_COLORS) |
 | `niri/scripts/clipboard` | **fish** | cliphist list → fuzzel → wl-copy → wtype Ctrl+V |
 | `niri/scripts/emoji` | **fish** | rofimoji --selector fuzzel --action copy → wtype Ctrl+V |
