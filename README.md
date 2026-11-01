@@ -189,7 +189,7 @@ sudo ufw reload
 
 ### WiFi Hotspot
 
-Start/stop with `hotspot` / `hotspot-off` (functions in `.config/fish/functions/`). First run prompts SSID + WPA2 password; later runs reuse saved values. Hotspot uses `ipv4.method shared`, DHCP served by `dnsmasq`, uplink follows the default route (wwan).
+Start/stop with `hotspot` / `hotspot --off` (function in `.config/fish/functions/`). First run prompts SSID + WPA2 password; later runs reuse saved values, `hotspot --setup` changes them. Hotspot uses `ipv4.method shared`, DHCP served by `dnsmasq`, uplink follows the default route (wwan).
 
 One-time firewall rules (needed with `ufw`):
 
@@ -215,7 +215,9 @@ sudo iptables -t nat -A PREROUTING -i wlp1s0 -p udp --dport 53 -j DNAT --to-dest
 sudo iptables -t nat -A PREROUTING -i wlp1s0 -p tcp --dport 53 -j DNAT --to-destination 8.8.8.8:53
 ```
 
-Run after each reboot (rules are not persistent). Verify from the client: open `http://1.1.1.1` (IP/routing) and a domain name (DNS). On the host:
+`hotspot` adds these rules itself on start (idempotent) and removes them on `hotspot --off`; no manual run after reboot. The `hotspot` connection has `connection.autoconnect no`, so it never comes up by itself at boot.
+
+Verify from the client: open `http://1.1.1.1` (IP/routing) and a domain name (DNS). On the host:
 
 ```bash
 nmcli -f NAME,DEVICE,STATE con show --active

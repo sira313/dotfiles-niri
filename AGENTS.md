@@ -25,7 +25,7 @@ Single user, single branch (`main`), no CI/CD — personal repo.
 | `.config/fish/config.fish` | starship prompt, eza aliases, `$PATH` |
 | `.config/fish/conf.d/shortcut.fish` | Fish functions: `snap`/`snap-list`/`snap-del` (btrfs), `fixcpu` (ryzenadj), `share-on`/`share-off` (samba), `clip-wipe` |
 | `.config/fish/functions/start-win.fish` | Windows VM launcher (podman-compose → freerdp3 RDP) |
-| `.config/fish/functions/hotspot.fish` | `hotspot` / `hotspot-off`: WPA2 AP via NetworkManager (`ipv4.method shared`, DHCP from dnsmasq); uplink follows default route (wwan) |
+| `.config/fish/functions/hotspot.fish` | `hotspot` / `hotspot --off` / `hotspot --setup`: WPA2 AP via NetworkManager (`ipv4.method shared`, DHCP from dnsmasq); uplink follows default route (wwan) |
 | `.local/share/applications/` | Desktop entries `win-start.desktop`, `win-stop.desktop` |
 | `windows11/podman-compose.yml` | Windows 11 VM (dockurr/windows, podman) |
 | `docs/` | Setup notes (Node.js on Arch, Pi setup, touch/jump fix) |
